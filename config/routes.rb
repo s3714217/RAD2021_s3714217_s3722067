@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  get 'main_page/main_page'
+  get 'main/main'
 
-  root 'main_page#main_page'
+  get 'main/about'
+
+  get 'main/contact'
+
+  root 'main#main'
 end
