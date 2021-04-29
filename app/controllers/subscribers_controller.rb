@@ -25,7 +25,7 @@ class SubscribersController < ApplicationController
   # POST /subscribers.json
   def create
     @subscriber = Subscriber.new(subscriber_params)
-
+    UserNewsletterMailer.send_signup_email(@subscriber).deliver_now
     respond_to do |format|
       if @subscriber.save
         format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
