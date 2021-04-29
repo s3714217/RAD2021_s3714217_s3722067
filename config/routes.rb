@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :subscribers
+  resources :users
   resources :items
   get 'main/main'
 

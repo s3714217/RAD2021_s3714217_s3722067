@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: MyText
+  itemid: MyText
   name: MyText
   category: MyText
   assetname: MyText
   price: 1.5
 
 two:
-  id: MyText
+  itemid: MyText
   name: MyText
   category: MyText
   assetname: MyText
