@@ -39,3 +39,4 @@ User.new
 u1 = User.new(name: "Username1", email: "zpane@test.com", password: "Pane1234", password_confirmation: "Pane1234")
 u1.save
 
+ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (1,1)")

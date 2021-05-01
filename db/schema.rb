@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210501094556) do
+ActiveRecord::Schema.define(version: 20210501110607) do
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20210501094556) do
     t.string "asseturl"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "items_users", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "user_id", null: false
   end
 
   create_table "subscribers", force: :cascade do |t|
