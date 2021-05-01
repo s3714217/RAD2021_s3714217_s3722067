@@ -12,28 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :itemid %>
-    <%= form.text_area :itemid, id: :item_itemid %>
-  </div>
-
-  <div class="field">
     <%= form.label :name %>
-    <%= form.text_area :name, id: :item_name %>
+    <%= form.text_field :name, id: :item_name %>
   </div>
 
   <div class="field">
     <%= form.label :category %>
-    <%= form.text_area :category, id: :item_category %>
-  </div>
-
-  <div class="field">
-    <%= form.label :assetname %>
-    <%= form.text_area :assetname, id: :item_assetname %>
+    <%= form.text_field :category, id: :item_category %>
   </div>
 
   <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price, id: :item_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :itemdescription %>
+    <%= form.text_field :itemdescription, id: :item_itemdescription %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asseturl %>
+    <%= form.text_field :asseturl, id: :item_asseturl %>
   </div>
 
   <div class="actions">

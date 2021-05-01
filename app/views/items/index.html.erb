@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Itemid</th>
       <th>Name</th>
       <th>Category</th>
-      <th>Assetname</th>
       <th>Price</th>
+      <th>Itemdescription</th>
+      <th>Asseturl</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +17,11 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.itemid %></td>
         <td><%= item.name %></td>
         <td><%= item.category %></td>
-        <td><%= item.assetname %></td>
         <td><%= item.price %></td>
+        <td><%= item.itemdescription %></td>
+        <td><%= item.asseturl %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

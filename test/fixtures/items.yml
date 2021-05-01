@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  itemid: MyText
-  name: MyText
-  category: MyText
-  assetname: MyText
+  name: MyString
+  category: MyString
   price: 1.5
+  itemdescription: MyString
+  asseturl: MyString
 
 two:
-  itemid: MyText
-  name: MyText
-  category: MyText
-  assetname: MyText
+  name: MyString
+  category: MyString
   price: 1.5
+  itemdescription: MyString
+  asseturl: MyString

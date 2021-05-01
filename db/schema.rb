@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210429131924) do
+ActiveRecord::Schema.define(version: 20210501080728) do
 
   create_table "items", force: :cascade do |t|
-    t.text "itemid"
-    t.text "name"
-    t.text "category"
-    t.text "assetname"
+    t.string "name"
+    t.string "category"
     t.float "price"
+    t.string "itemdescription"
+    t.string "asseturl"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20210429131924) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "name"
-    t.text "email"
+    t.string "name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
