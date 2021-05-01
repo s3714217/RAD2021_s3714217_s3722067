@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Item.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from 'items'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'items'")
 Item.new
 i1 = Item.new(name: "COOFANDY Men's Paisley Cotton Long Sleeve Shirt Floral Print Casual Retro Button Down Shirt", category: "Men", price: 28.99, itemdescription: "Button closure,,Material: 98% Cotton, offers you good feelings.,Process: High-end print process,the trendy vibrant color,do not shrink,do not fade.,Design: Button-front shirt featuring long sleeve,spread collar and adjustable cuffs,floral printing all over,and the hawaiian aloha style,these shirt will makes you stand out in the crowd.,Occasion: Retro printing design,printed shirt good for usual casual life,seaside vacation,beach,business,holiday,festivals,parties,provides choice for all occasions.", asseturl: "/app/assets/images/MenCasualRetroShirt.jpg")  
@@ -31,4 +32,10 @@ i9.save
 i10.save
 i11.save
 
+User.destroy_all
+ActiveRecord::Base.connection.execute("DELETE from 'users'")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'users'")
+User.new
+u1 = User.new(name: "Username1", email: "zpane@test.com", password: "Pane1234", password_confirmation: "Pane1234")
+u1.save
 
