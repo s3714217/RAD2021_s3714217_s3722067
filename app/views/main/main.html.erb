@@ -157,5 +157,15 @@
      
     </div>
     
+    <h1>Newsletter</h1>
+      <%= form_with model: @subscriber, url: newsletter_signup_path  do |form| %>
+      <div class = "mb-3">
+      <%= form.label :email %>        
+      <%= form.text_field :email, { :name => 'subscriber[email]' }%>
+      </div>
+      <div class = "mb-3">
+        <%= form.submit 'Subscribe!' %>
+      </div>
+    <% end %>  
     
 </body>

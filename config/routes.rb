@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'main/about'
 
   get 'main/contact'
+  
+  get 'newsletter_signup', to: 'subscribers#new'
+  post 'newsletter_signup', to: 'subscribers#create'
 
   root 'main#main'
 end
