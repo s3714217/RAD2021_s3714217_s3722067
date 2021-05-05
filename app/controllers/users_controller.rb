@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :remove_items]
+  
+    
+  # POST /users/remove_items
+  def remove_items
+    @user.items.delete_all
+    redirect_to root_path
+  end
+    
 
   # GET /users
   # GET /users.json

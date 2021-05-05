@@ -38,7 +38,10 @@ ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 
 User.new
 u1 = User.new(name: "Username1", email: "zpane@test.com", password: "Pane1234", password_confirmation: "Pane1234")
 u1.save
+u2 = User.new(name: "“RAD”", email: "rad2021rmit@gmail.com", password: "Rails2021", password_confirmation: "Rails2021")
+u2.save
 
 ActiveRecord::Base.connection.execute("DELETE from 'items_users'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'items_users'")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (1,1)")
+ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (7,1)")

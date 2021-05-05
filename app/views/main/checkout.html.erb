@@ -1,0 +1,23 @@
+<h1>Checkout</h1>
+  <% @user = User.find_by id: "1" %>
+  <%= debug(@user.id) %>
+ <%= debug(@user.items) %>
+ <h1>Items Number:   <%= @user.items.size %> </h1>
+ <tbody>
+      <% @user.items do |item| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>W
+      </tr>
+    <% end %>
+ </tbody>
+  
+<%= button_to "Checkout", main_main_path, method: :get %>
+
+
+<%= form_with url: remove_items_user_path(@user.id) do |form| %>
+  <div class = "mb-3">
+    <%= form.submit 'Checkout', method: :post %>
+  </div>
+<% end %>  
+    
