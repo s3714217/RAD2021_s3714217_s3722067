@@ -4,23 +4,32 @@
    
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
+        <% @active = true %>
+        <% @items.each do |item| %>
         
-        <div class="carousel-item active">
-          <div class="carousel-caption d-none d-md-block"><button type="button" class="btn btn-light">Add to Cart</button></div>
-          <img class="d-block w-100" src="https://www.dalmamall.ae/media/1752/hero-banner1400x500-fashion-ladies1.png" alt="First slide" width="250px" height="400px">
-        </div>
+          <% if item.category == "new" %>
+          
+           <% if @active == false%>
+              <div class="carousel-item">
+                <div class="carousel-caption d-none d-md-block"><button type="button" class="btn btn-light">Add to Cart</button></div>
+                <img class="d-block w-100" src=<%= item.asseturl%> alt="" width="250px" height="400px">
+              </div>
+            <% end %>
+            
+            <% if @active == true%>
+              <div class="carousel-item active">
+                <div class="carousel-caption d-none d-md-block"><button type="button" class="btn btn-light">Add to Cart</button></div>
+                <img class="d-block w-100" src=<%= item.asseturl%> alt="" width="250px" height="400px">
+              </div>
+              <%  @active = false %>
+            <% end %>
+            
+            
+            
+          <% end %>
+        <% end %>
+       
         
-        <div class="carousel-item">
-          <div class="carousel-caption d-none d-md-block"><button type="button" class="btn btn-light">Add to Cart</button></div>
-          <img class="d-block w-100" src="https://i.pinimg.com/originals/ee/28/d2/ee28d22c60e803ee1ea5a339b24acbf8.jpg" alt="Second slide" width="250px" height="400px">
-        </div>
-        
-        <div class="carousel-item">
-          <div class="carousel-caption">
-             <button type="button" class="btn btn-light">Add to Cart</button>
-          </div>
-          <img class="d-block w-100" src="https://cdn.shopify.com/s/files/1/0084/9282/files/website_banners_1_2048x2048.png?v=1563910461" alt="Third slide" width="250px" height="400px">
-        </div>
       </div>
       
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -38,82 +47,71 @@
    
    <div id="carouselControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        
+        <%
+            @count = 0
+            @item_set = []
+            
+            @items.each do |item|
+              if item.category == "popular"
+                @item_set[@count] = item
+                @count += 1
+              end
+            end
+        %>
         <div class="carousel-item active">  
-            <div class="row">
-          <div class="col-md-4">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://images-eu.ssl-images-amazon.com/images/I/71kFTNDCjsL.__AC_SY445_SX342_QL70_FMwebp_.jpg"
+          <div class="row">
+          
+          <% @display_count = 0%>
+          <% while @display_count < 3 %>
+            <% @item = @item_set[@display_count]%>
+               <div class="col-md-4">
+                <div class="card mb-2">
+                  <img class="card-img-top" src=<%=@item.asseturl%>
                    alt="Card image cap" width = 25px height = 600px>
-              <div class="card-body">
-                <h4 class="card-title">Item 1</h4>
+                  <div class="card-body">
+                <h4 class="card-title"><%=@item.name%></h4>
                 <button type="button" class="btn btn-light">Add to Cart</button>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/81BcQ77s6nL._AC_UL1500_.jpg"
-                   alt="Card image cap" width = 25px height = 600px>
-              <div class="card-body">
-                <h4 class="card-title">Item 2</h4>
-                <button type="button" class="btn btn-light">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://m.media-amazon.com/images/I/81Bxf0YWmvL._AC_UL1500_.jpg"
-                   alt="Card image cap" width = 25px height = 600px>
-              <div class="card-body">
-                <h4 class="card-title">Item 3</h4>
-                <button type="button" class="btn btn-light">Add to Cart</button>
-              </div>
-            </div>
+             </div>
+            <% @display_count += 1%>
+          <% end %>
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-         <div class="row">
-          <div class="col-md-4">
+      
+      <% while @display_count < @count%>
+        <div class="carousel-item">
+          <div class="row">
+           <% @temp_count = 3%>
+           <%  while @temp_count > 0 %>
+           <% @item = @item_set[@display_count]%>
+           <% if @display_count < @count%>
+           <div class="col-md-4">
             <div class="card mb-2">
-              <img class="card-img-top" src="https://m.media-amazon.com/images/I/81ff0TanClL._AC_UL1500_.jpg"
+              <img class="card-img-top" src=<%= @item.asseturl%>
                    alt="Card image cap" width = 25px height = 600px>
               <div class="card-body">
-                <h4 class="card-title">Item 4</h4>
+                <h4 class="card-title"><%=@item.name%></h4>
                 <button type="button" class="btn btn-light">Add to Cart</button>
               </div>
             </div>
           </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://images-na.ssl-images-amazon.com/images/I/81BcQ77s6nL._AC_UL1500_.jpg"
-                   alt="Card image cap" width = 25px height = 600px>
-              <div class="card-body">
-                <h4 class="card-title">Item 5</h4>
-                <button type="button" class="btn btn-light">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://m.media-amazon.com/images/I/81O3cekXLjL._AC_UL1500_.jpg"
-                   alt="Card image cap" width = 25px height = 600px>
-              <div class="card-body">
-                <h4 class="card-title">Item 6</h4>
-                <button type="button" class="btn btn-light">Add to Cart</button>
-              </div>
-            </div>
+          <%end%>
+           <%    
+                @temp_count -= 1
+                @display_count += 1
+                end
+            %>
+            
           </div>
         </div>
-      </div>
+        
+      <%  end %>
       
       
-      </div>
+      
+      
+      
       
       <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -150,7 +148,7 @@
         </div>
        
        <div>
-           <img src="http://umutofset.com/presta21/modules/jxhtmlcontent/img/821f4f8cf3ab9cfd4f179e010f09eb27c4e5ca89_home-banner-2.jpg" alt="Nature" style="width:100%  ;height:480px" align="center">
+           <img src="https://timwellstyled.files.wordpress.com/2014/06/gerard-pique-mango-2-735x1024.jpg" alt="Nature" style="width:100%  ;height:480px" align="center">
            <h2>Men</h2>
         </div>
       </div>
