@@ -1,0 +1,23 @@
+<h1>Product Details</h1>
+  <% @user = User.find_by id: "1" %>
+  <!--<%= debug(@user.id) %>-->
+  <!--<%= debug(@user.items) %>-->
+ <h1>Number of Items:   <%= @user.items.size %> </h1>
+ <tbody>
+    <% @user.items.each do |item| %>
+    <%= image_tag(item.asseturl, width: 200) %>
+    <br>
+    <h2><%= item.name %></h2>
+    <h3>Category:</h3><td><%= item.category %></td>
+    <h3>Price:</h3><td><%= item.price %></td>
+    <h3>Description:</h3><td><%= item.itemdescription %></td>
+    <br>
+    <% end %>
+ </tbody>
+  
+<%= form_with url: remove_items_user_path(@user.id) do |form| %>
+  <div class = "mb-3">
+    <%= form.submit 'Checkout', method: :post %>
+  </div>
+<% end %>  
+    

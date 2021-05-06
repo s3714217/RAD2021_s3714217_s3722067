@@ -35,6 +35,7 @@ class SubscribersController < ApplicationController
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
       end
     end
+    redirect_to :back
   end
 
   # PATCH/PUT /subscribers/1

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'main/contact'
   
+  get 'main/productdetails'
+  
   get 'main/checkout'
   
   get 'newsletter_signup', to: 'subscribers#new'
