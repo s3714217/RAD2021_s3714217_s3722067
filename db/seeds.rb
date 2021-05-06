@@ -19,7 +19,21 @@ i7 = Item.new(name: "Calvin Klein Women's Short Shoulder Sheath with Flutter Sle
 i8 = Item.new(name: "Calvin Klein Women's Belted Jumpsuit with Flutter Sleeves", category: "Women", price: 84.05, itemdescription: "94% Polyester, 6% Spandex,Imported,Zipper closure,Dry Clean Only,Flattering fit", asseturl: "CalvinKleinBlackFloralDress.jpg")  
 i9 = Item.new(name: "Nike Boys' Dri FIT Triple Futura Graphic T Shirt and Shorts 2 Piece Set", category: "Kids", price: 26.49, itemdescription: "100% Polyester,Nike Dri-FIT moisture-wicking technology keeps him dry and comfortable.,Ribbed crewneck on shirt. Knit fabric shorts.,Tagless neck. Nike Swoosh graphic print at chest.,Nike Swoosh logo at leg. Elastic and tagless waistband for added comfort. Fabric : 100% polyester", asseturl: "KidsRedNikeSet.jpg")  
 i10 = Item.new(name: "Air Jordan Jumpman 2 Piece Boys Outfit Set", category: "Kids", price: 21.50, itemdescription: "100% Polyester,Nike Dri-FIT moisture-wicking technology keeps him dry and comfortable.,Ribbed crewneck on shirt. Knit fabric shorts.,Tagless neck. Elastic and tagless waistband for added comfort. Fabric : 100% polyester", asseturl: "KidsRedJumpManSet.jpg")  
-i11 = Item.new(name: "Nike Boy`s Jacket and Pants 2 Piece Set", category: "New", price: 21.50, itemdescription: "Regular fit jacket and sweatpants. High collared design offers additional protection if the weather gets chilly.,Full-zip style jacket adjusts comfort and warmth for your child.,Large logo located on back delivers a creative and stylish jacket that gets the kids excited to wear. Soft and comfy fabrics on both pants and jacket create a cozy feel.,Comfort elastic waistband supports a personalized fit. Contoured colors on jacket and sweat pants promote an athletic look.,Polyester", asseturl: "KidsBlackJacketSet.jpg")  
+i11 = Item.new(name: "Nike Boy`s Jacket and Pants 2 Piece Set", category: "Kids", price: 21.50, itemdescription: "Regular fit jacket and sweatpants. High collared design offers additional protection if the weather gets chilly.,Full-zip style jacket adjusts comfort and warmth for your child.,Large logo located on back delivers a creative and stylish jacket that gets the kids excited to wear. Soft and comfy fabrics on both pants and jacket create a cozy feel.,Comfort elastic waistband supports a personalized fit. Contoured colors on jacket and sweat pants promote an athletic look.,Polyester", asseturl: "KidsBlackJacketSet.jpg")  
+
+i12 = Item.new(name: "The Long Sleeved Shirt", category: "new", price: 30.99, itemdescription: "", asseturl: "https://i.pinimg.com/originals/ee/28/d2/ee28d22c60e803ee1ea5a339b24acbf8.jpg")
+i13 = Item.new(name: "White Sweater", category: "new", price: 20.99, itemdescription: "", asseturl: "https://cdn.shopify.com/s/files/1/0485/1810/3193/collections/Main_sectionTopBanner_promotion_yak_1080_201030_1350x550.jpg?v=1612565602")
+i14 = Item.new(name: "Havard T-Shirt", category: "new", price: 10.99, itemdescription: "", asseturl: "https://cdn.shopify.com/s/files/1/0084/9282/files/website_banners_1_2048x2048.png?v=1563910461")
+
+
+i15 = Item.new(name: "The White Polos", category: "popular", price: 30.99, itemdescription: "", asseturl: "https://images-eu.ssl-images-amazon.com/images/I/71kFTNDCjsL.__AC_SY445_SX342_QL70_FMwebp_.jpg")
+i16 = Item.new(name: "The Purple Sweater", category: "popular", price: 30.99, itemdescription: "", asseturl: "https://images-na.ssl-images-amazon.com/images/I/81BcQ77s6nL._AC_UL1500_.jpg")
+i17 = Item.new(name: "The Red Sweater", category: "popular", price: 30.99, itemdescription: "", asseturl: "https://img.macson.es/fotos/631461_1_l.jpg")
+i18 = Item.new(name: "The Green Sweater", category: "popular", price: 30.99, itemdescription: "", asseturl: "https://m.media-amazon.com/images/I/81ff0TanClL._AC_UL1500_.jpg")
+i19 = Item.new(name: "The Black Hoodie", category: "popular", price: 30.99, itemdescription: "", asseturl: "https://cdn.shopify.com/s/files/1/0317/5009/4893/products/05MAY04BRONZESNAKE0124.jpg?v=1588721313")
+i20 = Item.new(name: "The White Sweater", category: "popular", price: 30.99, itemdescription: "", asseturl: "https://m.media-amazon.com/images/I/81O3cekXLjL._AC_UL1500_.jpg")
+
+
 i1.save 
 i2.save
 i3.save
@@ -31,6 +45,18 @@ i8.save
 i9.save
 i10.save
 i11.save
+
+i12.save
+i13.save
+i14.save
+
+i15.save
+i16.save
+i17.save
+i18.save
+i19.save
+i20.save
+
 
 User.destroy_all
 ActiveRecord::Base.connection.execute("DELETE from 'users'")
