@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     end
   end
   resources :subscribers
-  get 'main/main'
+  get 'main/main' => 'main#main'
+  post 'main/main' => 'main#main'
 
   get 'main/about'
 
