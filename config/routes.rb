@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     end
   end
   resources :subscribers
+  resources :carts do
+    member do
+      post :remove_items, to: 'carts#remove_items'
+    end
+  end
   get 'main/main'
 
   get 'main/about'

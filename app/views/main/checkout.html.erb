@@ -1,21 +1,24 @@
 <h1>Checkout</h1>
-  <% @user = User.find_by id: "1" %>
-  <!--<%= debug(@user.id) %>-->
-  <!--<%= debug(@user.items) %>-->
- <h1>Number of Items:   <%= @user.items.size %> </h1>
+  <% @id = 1 %>
+
+  <% @cart = Cart.where(:user_id => @id) %>
+  
+  <h1>Number of Items:   <%= @cart.size %> </h1>
  <tbody>
-    <% @user.items.each do |item| %>
-    <%= image_tag(item.asseturl, width: 200) %>
+    <% @cart.each do |cartitem| %>
+    <% @item = Item.find_by id: cartitem.item_id %>
+    <%= image_tag(@item.asseturl, width: 200) %>
     <br>
-    <h2><%= item.name %></h2>
-    <h3>Category:</h3><td><%= item.category %></td>
-    <h3>Price:</h3><td><%= item.price %></td>
-    <h3>Description:</h3><td><%= item.itemdescription %></td>
+    <h2><%= @item.name %></h2>
+    <h3>Price:</h3><td><%= @item.price %></td>
+    <h3>Size:</h3><td><%= cartitem.size %></td>
+    <h3>Colour:</h3><td><%= cartitem.colour %></td>    
+    <h3>Quantity:</h3><td><%= cartitem.quantity %></td>
     <br>
     <% end %>
  </tbody>
   
-<%= form_with url: remove_items_user_path(@user.id) do |form| %>
+<%= form_with url: remove_items_cart_path(@id) do |form| %>
   <div class = "mb-3">
     <%= form.submit 'Checkout', method: :post %>
   </div>
