@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       post :remove_items, to: 'carts#remove_items'
     end
   end
+  
+  post :add_to, to: 'carts#add_to'
+  
   get 'main/main'
 
   get 'main/about'

@@ -45,6 +45,7 @@ ActiveRecord::Base.connection.execute("DELETE from 'items_users'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'items_users'")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (1,1)")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (7,1)")
+ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (3,1)")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (5,2)")
 
 ActiveRecord::Base.connection.execute("DELETE from 'carts'")
