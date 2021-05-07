@@ -11,14 +11,27 @@
           
            <% if @active == false%>
               <div class="carousel-item">
-                <div class="carousel-caption d-none d-md-block"><button type="button" class="btn btn-light">Add to Cart</button></div>
+                <div class="carousel-caption d-none d-md-block">
+                  
+                  <%= form_tag action: 'main' do %> 
+                  <%= hidden_field_tag'selected_item', item.id %>
+                  <%= submit_tag("Add to Cart", :class => 'btn btn-light' )%>
+                  <% end %>
+                  
+                </div>
                 <img class="d-block w-100" src=<%= item.asseturl%> alt="" width="250px" height="400px">
               </div>
             <% end %>
             
             <% if @active == true%>
               <div class="carousel-item active">
-                <div class="carousel-caption d-none d-md-block"><button type="button" class="btn btn-light">Add to Cart</button></div>
+                <div class="carousel-caption d-none d-md-block">
+                  
+                  <%= form_tag action: 'main' do %> 
+                  <%= hidden_field_tag'selected_item', item.id %>
+                  <%= submit_tag("Add to Cart", :class => 'btn btn-light' )%> 
+                  <% end %> 
+                  </div>
                 <img class="d-block w-100" src=<%= item.asseturl%> alt="" width="250px" height="400px">
               </div>
               <%  @active = false %>
@@ -70,7 +83,13 @@
                    alt="Card image cap" width = 25px height = 600px>
                   <div class="card-body">
                 <h4 class="card-title"><%=@item.name%></h4>
-                <button type="button" class="btn btn-light">Add to Cart</button>
+                  
+                  <div class="wrapper">
+                    <%= form_tag action: 'main' do %> 
+                    <%= hidden_field_tag'selected_item', @item.id %>
+                    <%= submit_tag("Add to Cart", :class => 'btn btn-light' )%>
+                    <% end %>
+                  </div>
               </div>
             </div>
              </div>
@@ -92,7 +111,12 @@
                    alt="Card image cap" width = 25px height = 600px>
               <div class="card-body">
                 <h4 class="card-title"><%=@item.name%></h4>
-                <button type="button" class="btn btn-light">Add to Cart</button>
+                <div class="wrapper">
+                  <%= form_tag action: 'main' do %> 
+                  <%= hidden_field_tag'selected_item', @item.id %>
+                  <%= submit_tag("Add to Cart", :class => 'btn btn-light' )%>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
