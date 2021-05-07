@@ -17,7 +17,7 @@
     <br>
     <% end %>
  </tbody>
-  
+  <h3>Total: $<%=total_cost(@id) %></h3> 
 <%= form_with url: remove_items_cart_path(@id) do |form| %>
   <div class = "mb-3">
     <%= form.submit 'Checkout', method: :post %>

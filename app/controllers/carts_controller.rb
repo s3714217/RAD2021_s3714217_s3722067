@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-  
-  # POST /users/remove_items
+  include CartsHelper
+  # POST /id/remove_items
   def remove_items
     @cart = Cart.where(:user_id => params[:id])
     @cart.each do |cartitem| 
@@ -9,11 +9,10 @@ class CartsController < ApplicationController
     redirect_to root_path
   end  
   
-  # POST /users/add_to
+  # POST /add_to
   def add_to
     Cart.new
     @cart = Cart.new(cart_params)
-    debugger
     @cart.save
   end  
   
