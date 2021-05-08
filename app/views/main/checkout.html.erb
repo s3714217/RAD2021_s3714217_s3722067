@@ -9,7 +9,7 @@
     <% @item = Item.find_by id: cartitem.item_id %>
     <%= image_tag(@item.asseturl, width: 200) %>
     <br>
-    <h2><%= @item.name %></h2>
+    <h3><%= @item.name %></h3>
     <h3>Price:</h3><td><%= @item.price %></td>
     <h3>Size:</h3><td><%= cartitem.size %></td>
     <h3>Colour:</h3><td><%= cartitem.colour %></td>    

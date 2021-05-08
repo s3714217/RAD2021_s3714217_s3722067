@@ -3,20 +3,37 @@
   
   <% @user = User.find_by id: @id %>
   
- <h1>Number of Items:   <%= @user.items.size %> </h1>
+  
+  <%     
+  itemsNo = 0
+  itemsList = nil
+  ifloggedin = true
+  if(ifloggedin)        
+    itemsNo = @user.items.size
+    itemsList = @user.items
+  else
+    itemsNo = cookies[:vistorsavedlist].split(",").size
+    itemsList = Array.new(itemsNo)
+    cookies[:vistorsavedlist].split(",").each_with_index do |itemId,index|
+      itemsList[index] = Item.find_by id: itemId
+    end
+  end
+  %>
+  
+  
+ <h1>Number of Items:   <%= itemsNo %> </h1>
  <tbody>
    
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false" style="margin-left:50px;margin-right:50px;">
     <div class="carousel-inner">
-    <% @user.items.each_with_index do |item, index| %>
+    <% itemsList.each_with_index do |item, index| %>
         <% if index == 0 %> <div class="carousel-item active"> 
         <% else %> <div class="carousel-item"> 
         <% end %>
         <%= form_with url: to_productdetails_path() do |form| %>
         <%= form.hidden_field :itemId, value: item.id %>
         <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
-        <br><br>
-        <h2><%= item.name %></h2>
+        <h3><%= item.name %></h3>
         <h3>Price:</h3><td><%= item.price %></td>
         <br>
         <% end %> 
