@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'main/savedlist'
+
   resources :items
   resources :users do
     member do
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
       post :remove_items, to: 'carts#remove_items'
     end
   end
+  
+  post :to_productdetails, to: 'main#to_productdetails'
   
   post :add_to, to: 'carts#add_to'
   

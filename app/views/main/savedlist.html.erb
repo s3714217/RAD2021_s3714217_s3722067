@@ -1,0 +1,38 @@
+<h1>Product Details</h1>
+  <% @id = 1 %>
+  
+  <% @user = User.find_by id: @id %>
+  
+ <h1>Number of Items:   <%= @user.items.size %> </h1>
+ <tbody>
+   
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false" style="margin-left:50px;margin-right:50px;">
+    <div class="carousel-inner">
+    <% @user.items.each_with_index do |item, index| %>
+        <% if index == 0 %> <div class="carousel-item active"> 
+        <% else %> <div class="carousel-item"> 
+        <% end %>
+        <%= form_with url: to_productdetails_path() do |form| %>
+        <%= form.hidden_field :itemId, value: item.id %>
+        <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
+        <br><br>
+        <h2><%= item.name %></h2>
+        <h3>Price:</h3><td><%= item.price %></td>
+        <br>
+        <% end %> 
+      </div>
+    <% end %>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="margin-left:-25px;width: 2%;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="margin-right:-25px;width: 2%;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+    
+    
+ </tbody>
+    

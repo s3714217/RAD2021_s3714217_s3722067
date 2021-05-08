@@ -7,4 +7,8 @@ class MainController < ApplicationController
 
   def contact
   end
+  
+  def to_productdetails
+    redirect_to '/main/productdetails', notice: params[:itemId]
+  end
 end
