@@ -1,6 +1,5 @@
 <h1>Product Details</h1>
   <% @id = 1 %>
-  
   <% @user = User.find_by id: @id %>
   
   
@@ -12,15 +11,17 @@
     itemsNo = @user.items.size
     itemsList = @user.items
   else
-    itemsNo = cookies[:vistorsavedlist].split(",").size
-    itemsList = Array.new(itemsNo)
-    cookies[:vistorsavedlist].split(",").each_with_index do |itemId,index|
-      itemsList[index] = Item.find_by id: itemId
+    if(cookies[:vistorsavedlist])
+      itemsNo = cookies[:vistorsavedlist].split(",").size
+      itemsList = Array.new(itemsNo)
+      cookies[:vistorsavedlist].split(",").each_with_index do |itemId,index|
+        itemsList[index] = Item.find_by id: itemId
+      end
     end
   end
   %>
   
-  
+ <% if itemsNo > 0%>
  <h1>Number of Items:   <%= itemsNo %> </h1>
  <tbody>
    
@@ -37,6 +38,12 @@
         <h3>Price:</h3><td><%= item.price %></td>
         <br>
         <% end %> 
+        
+        <%= form_with url: removed_saved_path() do |form| %>
+          <%= form.hidden_field :itemId, value: item.id %>
+          <%= form.submit 'Remove', method: :post %>
+        <% end %> 
+        
       </div>
     <% end %>
     </div>
@@ -49,7 +56,11 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-    
+  
+  <% else %>  
+  <h1>No items saved </h1>
+  
+  <% end%>  
     
  </tbody>
     

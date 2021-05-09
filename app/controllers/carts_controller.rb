@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   include CartsHelper
+  
   # POST /id/remove_items
   def remove_items
     @cart = Cart.where(:user_id => params[:id])
@@ -12,6 +13,15 @@ class CartsController < ApplicationController
     else
       redirect_to main_rating_path, notice: params[:id]
     end
+  end  
+  
+  def remove_item
+    cartItem = Cart.find_by id: params[:cartitemId]
+    cartItem.destroy
+    item = Item.find_by id: params[:itemId]
+    item.popularity =  item.popularity - 1
+    item.save
+    redirect_to main_checkout_path
   end  
   
   # POST /add_to

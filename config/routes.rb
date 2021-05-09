@@ -15,12 +15,15 @@ Rails.application.routes.draw do
   resources :carts do
     member do
       post :remove_items, to: 'carts#remove_items'
+      post :remove_item, to: 'carts#remove_item'
     end
   end
   
   post :add_rating, to: 'users#add_rating'
   
   post :to_saved, to: 'main#to_saved'
+  
+  post :removed_saved, to: 'main#removed_saved'
   
   post :to_productdetails, to: 'main#to_productdetails'
   
