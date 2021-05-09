@@ -1,13 +1,23 @@
 <h1>Product Details</h1>
   <% @id = 1 %>
-  <% @user = User.find_by id: @id %>
   
   <% item = Item.find_by id: notice %>
   
+  <% 
+  sizeOptionArray = Array.new(item.size.split(",").size) { Array.new(2) }
+  item.size.split(",").each_with_index do |size, index|
+    sizeOptionArray[index] = [size,size]
+  end
+
+  colourOptionArray = Array.new(item.colour.split(",").size) { Array.new(2) }
+  item.colour.split(",").each_with_index do |colour, index|
+    colourOptionArray[index] = [colour,colour]
+  end
+  %>
+  
  <tbody>
       <%= image_tag(item.asseturl, width: 300, height: 400, display: "block") %>
-      <br><br>
-      <h2><%= item.name %></h2>
+      <h3><%= item.name %></h3>
       <h3>Price:</h3><td><%= item.price %></td>
       <h3>Description:</h3><td><%= item.itemdescription %></td>
       <br>
@@ -18,11 +28,11 @@
           <%= form.hidden_field :item_id, value: item.id%>
           <div class="col-xs-3">
           <b>Size</b><br>
-          <%= form.select(:size, options_for_select([['Small', 'Small'], ['Medium', 'Medium'], ['Large', 'Large'], ['ExtraLarge', 'ExtraLarge']])) %>
+          <%= form.select(:size, options_for_select(sizeOptionArray)) %>
           </div>
           <div class="col-xs-3">
             <b>Colour</b><br />
-            <%= form.select(:colour, options_for_select([['RED', 'RED'], ['BLUE', 'BLUE'], ['GREEN', 'GREEN'], ['BLACK', 'BLACK'], ['WHITE', 'WHITE'], ['BROWN', 'BROWN'], ['PINK', 'PINK']])) %>
+            <%= form.select(:colour, options_for_select(colourOptionArray)) %>
           </div>
           <div class="col-xs-3">
             <b>Quantity</b><br />
