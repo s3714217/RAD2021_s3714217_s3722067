@@ -6,13 +6,21 @@ class CartsController < ApplicationController
     @cart.each do |cartitem| 
       cartitem.delete
     end
-    redirect_to root_path
+    user = User.find_by id: params[:id]
+    if(user.has_rating?)
+      redirect_to root_path
+    else
+      redirect_to main_rating_path, notice: params[:id]
+    end
   end  
   
   # POST /add_to
   def add_to
     Cart.new
     @cart = Cart.new(cart_params)
+    item = Item.find_by id: cart_params["item_id"]
+    item.popularity = item.popularity + 1
+    item.save
     @cart.save
   end  
   

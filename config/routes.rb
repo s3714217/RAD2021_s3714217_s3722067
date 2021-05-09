@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'main/rating'
+
+  get 'main/testcollection'
+
   get 'main/savedlist'
 
   resources :items
@@ -13,6 +17,10 @@ Rails.application.routes.draw do
       post :remove_items, to: 'carts#remove_items'
     end
   end
+  
+  post :add_rating, to: 'users#add_rating'
+  
+  post :to_saved, to: 'main#to_saved'
   
   post :to_productdetails, to: 'main#to_productdetails'
   
