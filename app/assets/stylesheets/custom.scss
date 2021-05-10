@@ -42,10 +42,22 @@ li a:hover {
   padding: 0 10px;
 }
 
+.card-title{
+  text-align: center;
+}
+
+.wrapper {
+    text-align: center;
+}
 .column img {
   margin-top: 100px;
   vertical-align: middle;
 }
+
+.collection_wrapper{
+  margin-top: 10px;
+}
+
 
 footer {margin-top: 45px;padding-top: 5px;border-top: 1px solid #eaeaea;color: #777;}
 footer a {color: #555;}

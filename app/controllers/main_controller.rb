@@ -9,6 +9,7 @@ class MainController < ApplicationController
     @items = Item.all
     @selected_item = params[:selected_item]
     if @selected_item != nil
+      #Adding Item to cookies if guest
       @current_user.items << Item.find_by(id:@selected_item)
       @selected_item = nil
     end
