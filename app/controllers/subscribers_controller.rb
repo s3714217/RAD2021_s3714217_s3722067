@@ -28,10 +28,10 @@ class SubscribersController < ApplicationController
     UserNewsletterMailer.send_signup_email(@subscriber).deliver_now
     respond_to do |format|
       if @subscriber.save
-        format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
+        format.html { redirect_to :root, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscriber }
       else
-        format.html { render :new }
+        format.html { redirect_to :root, notice: 'Subscription was not able to be created.'}
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
       end
     end

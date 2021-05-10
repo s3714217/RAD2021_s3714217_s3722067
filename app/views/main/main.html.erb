@@ -115,6 +115,7 @@
     </div>
     </div>
     <h1>Newsletter</h1>
+      <p id="notice"><%= notice %></p>
       <%= form_with model: @subscriber, url: newsletter_signup_path  do |form| %>
       <div class = "mb-3">
       <%= form.label :email %>        

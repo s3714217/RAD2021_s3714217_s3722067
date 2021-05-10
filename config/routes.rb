@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'main/rating'
+
+  get 'main/testcollection'
+
+  get 'main/savedlist'
   get 'login/login' => 'login#login'
   get 'login/sign_up' => 'login#sign_up'
   post 'login/sign_up' => 'login#sign_up'
@@ -10,12 +15,33 @@ Rails.application.routes.draw do
     end
   end
   resources :subscribers
+  resources :carts do
+    member do
+      post :remove_items, to: 'carts#remove_items'
+      post :remove_item, to: 'carts#remove_item'
+    end
+  end
+  
+  post :filter_saved, to: 'main#filter_saved'
+  
+  post :add_rating, to: 'users#add_rating'
+  
+  post :to_saved, to: 'main#to_saved'
+  
+  post :removed_saved, to: 'main#removed_saved'
+  
+  post :to_productdetails, to: 'main#to_productdetails'
+  
+  post :add_to, to: 'carts#add_to'
+  
   get 'main/main' => 'main#main'
   post 'main/main' => 'main#main'
 
   get 'main/about'
 
   get 'main/contact'
+  
+  get 'main/productdetails'
   
   get 'main/checkout'
   

@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :remove_items]
   
-    
   # POST /users/remove_items
   def remove_items
     @user.items.delete_all
     redirect_to root_path
   end
-    
+  
+  def add_rating
+    rating = Rating.new(user_id: params[:userId], ratingscore: params[:rating] )
+    rating.save()
+    redirect_to root_path
+  end
 
   # GET /users
   # GET /users.json
