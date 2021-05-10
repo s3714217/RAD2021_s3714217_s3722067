@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'login/login' => 'login#login'
+  get 'login/sign_up' => 'login#sign_up'
+  post 'login/sign_up' => 'login#sign_up'
+
   resources :items
   resources :users do
     member do
