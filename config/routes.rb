@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
   
+  post :filter_saved, to: 'main#filter_saved'
+  
   post :add_rating, to: 'users#add_rating'
   
   post :to_saved, to: 'main#to_saved'

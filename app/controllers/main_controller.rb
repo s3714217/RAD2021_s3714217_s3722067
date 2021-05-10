@@ -12,6 +12,64 @@ class MainController < ApplicationController
     redirect_to '/main/productdetails', notice: params[:itemId]
   end
   
+  def filter_saved
+    filteredItems = Item.all
+    if(params[:category] != 'All')
+      filteredItems = filteredItems.select {|item| filter_category(item, params[:category])}
+    end
+    
+    tags =["Shirt", "Dress", "Sporting"]
+    tagsWithParams = { "Shirt" => :Shirt, "Dress" => :Dress, "Sporting" => :Sporting }
+    if(params[:AllTags])
+      filteredItems = filteredItems.select{|item| filter_tag(item,tags)}
+    else
+      tagsFromForm = []
+      tagsWithParams.each do |tag, param|
+        if(params[param]) 
+          tagsFromForm << tag
+        end
+      end
+      filteredItems = filteredItems.select {|item| filter_tag(item,tagsFromForm)}
+    end
+    
+    coloursWithParams = { "RED" => :RED, "BLUE" => :BLUE, "GREEN" => :GREEN, "BLACK" => :BLACK}
+    coloursFromForm = []
+      coloursWithParams.each do |colour, param|
+        if(params[param]) 
+          coloursFromForm << colour
+        end
+      end
+    filteredItems.select! {|item| filter_colour(item, coloursFromForm)}
+            
+    filteredItems.select! {|item| filter_size(item, params[:size])}
+    
+    idArray = []
+    filteredItems.each do |item|
+      idArray << item.id
+    end
+    redirect_to '/main/testcollection', notice: idArray
+  end
+  
+  
+  def filter_category(item, category)
+    item.category.split(",").include? category
+  end
+  
+  
+  def filter_tag(item, tag)
+    !(item.tag.split(",") & tag).empty?
+  end
+  
+  
+  def filter_colour(item, colour)
+    !(item.colour.split(",") & colour).empty?
+  end
+  
+  
+  def filter_size(item, size)
+    item.size.split(",").include? size
+  end
+  
   def removed_saved
     ifloggedin = true
     if(ifloggedin)        
