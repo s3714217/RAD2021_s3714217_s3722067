@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'main/testcollection'
 
   get 'main/savedlist'
+  get 'login/login' => 'login#login'
+  get 'login/sign_up' => 'login#sign_up'
+  post 'login/sign_up' => 'login#sign_up'
 
   resources :items
   resources :users do
@@ -31,7 +34,8 @@ Rails.application.routes.draw do
   
   post :add_to, to: 'carts#add_to'
   
-  get 'main/main'
+  get 'main/main' => 'main#main'
+  post 'main/main' => 'main#main'
 
   get 'main/about'
 
