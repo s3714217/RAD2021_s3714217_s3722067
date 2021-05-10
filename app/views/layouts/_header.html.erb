@@ -12,13 +12,22 @@
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
-       <li><%= link_to"Home", main_main_path%></li>
-                <li><%= link_to"About", main_about_path%></li>
-                <li><%= link_to"Contact", main_contact_path%></li>
-                <li><%= link_to"Testing Page", main_testcollection_path%></li>
-                <li><%= link_to"Saved List", main_savedlist_path%></li>
-                <li><%= link_to"Checkout", main_checkout_path%></li>
-                <li><%= link_to"Login", login_login_path%></li>
+                 <li class="nav-item"><a class="nav-link" href=<%= main_main_path %>>Home</a></li>
+                <li class="nav-item"><a class="nav-link" href=<%= main_about_path %>>About</a></li>
+                <li class="nav-item"><a class="nav-link" href=<%= main_contact_path %>>Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href=<%= main_checkout_path %>>Checkout</a></li>
+                <li class="nav-item"><a class="nav-link" href=<%= main_testcollection_pat %>>Testing Page</a></li>
+                <li class="nav-item"><a class="nav-link" href=<%= main_savedlist_path %>>Saved List</a></li>
+                <%   
+                  @status = "Logout"
+                  @path = login_logout_path
+                  @current_user = User.find_by_id(session[:current_user_id])
+                  if @current_user == nil
+                    @path = login_login_path
+                    @status = "Login"
+                  end
+                %>
+                <li class="nav-item"><a class="nav-link" href=<%= @path %>><%=@status%></a></li>
     </ul>
   </div>  
 </nav>

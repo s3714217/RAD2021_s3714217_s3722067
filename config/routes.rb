@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'login/logout'
   get 'main/rating'
 
   get 'main/testcollection'
@@ -6,8 +7,10 @@ Rails.application.routes.draw do
   get 'main/savedlist'
   get 'login/login' => 'login#login'
   get 'login/sign_up' => 'login#sign_up'
+  
   post 'login/sign_up' => 'login#sign_up'
-
+  post 'login/login' => 'login#login'
+  
   resources :items
   resources :users do
     member do
