@@ -1,16 +1,13 @@
 class MainController < ApplicationController
   def main
     @test = "active"
-     @current_user = User.find_by_id(session[:current_user_id])
-      if @current_user == nil
-        @current_user = User.new(name: "Guest", email: "guest@test.com", password: "123456789", password_confirmation: "123456789")
-      end
-    
+    @current_user = User.find_by_id(session[:current_user_id])
+
     @items = Item.all
     @selected_item = params[:selected_item]
     if @selected_item != nil
       #Adding Item to cookies if guest
-      @current_user.items << Item.find_by(id:@selected_item)
+      to_saved_param(@selected_item)
       @selected_item = nil
     end
     
@@ -34,8 +31,8 @@ class MainController < ApplicationController
       filteredItems = filteredItems.select {|item| filter_category(item, params[:category])}
     end
     
-    tags =["Shirt", "Dress", "Sporting"]
-    tagsWithParams = { "Shirt" => :Shirt, "Dress" => :Dress, "Sporting" => :Sporting }
+    tags =["Shirt", "Dress", "Sporting", "Hoodie", "Sweater"]
+    tagsWithParams = { "Shirt" => :Shirt, "Dress" => :Dress, "Sporting" => :Sporting, "Hoodie" => :Hoodie, "Sweater" => :Sweater }
     if(params[:AllTags])
       filteredItems = filteredItems.select{|item| filter_tag(item,tags)}
     else
@@ -87,17 +84,24 @@ class MainController < ApplicationController
   end
   
   def removed_saved
-    ifloggedin = true
+    ifloggedin = false
+    if(session[:current_user_id])
+      ifloggedin = true
+    end
     if(ifloggedin)        
       item = Item.find_by id: params[:itemId]
-      user = User.find_by id: '1'
+      user = User.find_by id: session[:current_user_id]
       user.items.delete(item)
       item.popularity =  item.popularity - 1
       item.save
     else
       array = cookies[:vistorsavedlist].split(",")
       array.delete(params[:itemId])
-      cookies[:vistorsavedlist] = array.join(',')
+      if(array.empty?)
+        cookies.delete :vistorsavedlist
+      else
+        cookies[:vistorsavedlist] = array.join(',')
+      end
       item = Item.find_by id: params[:itemId]
       item.popularity =  item.popularity - 1
       item.save
@@ -106,10 +110,13 @@ class MainController < ApplicationController
   end
   
   def to_saved
-    ifloggedin = true
+    ifloggedin = false
+    if(session[:current_user_id])
+      ifloggedin = true
+    end
     if(ifloggedin)
       item = Item.find_by id: params[:itemId]
-      user = User.find_by id: '1'
+      user = User.find_by id: session[:current_user_id]
       if (!user.items.include?(item))
         user.items << item
         item.popularity =  item.popularity + 1
@@ -129,4 +136,42 @@ class MainController < ApplicationController
       end
     end
   end
+  
+    
+  def to_saved_param(itemId)
+    ifloggedin = false
+    if(session[:current_user_id])
+      ifloggedin = true
+    end
+    if(ifloggedin)
+      item = Item.find_by id: itemId
+      user = User.find_by id: session[:current_user_id]
+      if (!user.items.include?(item))
+        user.items << item
+        item.popularity =  item.popularity + 1
+        item.save
+      end
+    else
+      if(cookies[:vistorsavedlist])
+        array = cookies[:vistorsavedlist].split(",")
+        if(!array.include?itemId)
+          item = Item.find_by id: itemId
+          item.popularity = item.popularity + 1
+          item.save
+          cookies[:vistorsavedlist] = cookies[:vistorsavedlist]+","+itemId
+        end
+      else    
+        cookies[:vistorsavedlist] = itemId
+      end
+    end
+  end
+  
+  
+  def cart_redirect
+    if(!session[:current_user_id])
+      redirect_to login_login_path
+    end
+  end
+  helper_method :cart_redirect
+  
 end

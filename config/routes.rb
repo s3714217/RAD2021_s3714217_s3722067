@@ -18,13 +18,11 @@ Rails.application.routes.draw do
     end
   end
   resources :subscribers
-  resources :carts do
-    member do
-      post :remove_items, to: 'carts#remove_items'
-      post :remove_item, to: 'carts#remove_item'
-    end
-  end
+  resources :carts
   
+  post :remove_items, to: 'carts#remove_items'
+  post :remove_item, to: 'carts#remove_item'
+
   post :filter_saved, to: 'main#filter_saved'
   
   post :add_rating, to: 'users#add_rating'

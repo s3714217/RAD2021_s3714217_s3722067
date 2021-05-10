@@ -1,13 +1,14 @@
 <h1>Product Details</h1>
-  <% @id = 1 %>
-  <% @user = User.find_by id: @id %>
-  
-  
+
   <%     
   itemsNo = 0
   itemsList = nil
-  ifloggedin = true
+  ifloggedin = false
+  if(session[:current_user_id])
+    ifloggedin = true
+  end
   if(ifloggedin)        
+    @user = User.find_by id: session[:current_user_id]
     itemsNo = @user.items.size
     itemsList = @user.items
   else
@@ -21,7 +22,7 @@
   end
   %>
   
- <% if itemsNo > 0%>
+ <% if itemsNo > 0 %>
  <h1>Number of Items:   <%= itemsNo %> </h1>
  <tbody>
    

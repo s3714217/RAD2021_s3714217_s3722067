@@ -1,17 +1,16 @@
 class CartsController < ApplicationController
   include CartsHelper
   
-  # POST /id/remove_items
   def remove_items
-    @cart = Cart.where(:user_id => params[:id])
+    @cart = Cart.where(:user_id => params[:userId])
     @cart.each do |cartitem| 
       cartitem.delete
     end
-    user = User.find_by id: params[:id]
+    user = User.find_by id: params[:userId]
     if(user.has_rating?)
       redirect_to root_path
     else
-      redirect_to main_rating_path, notice: params[:id]
+      redirect_to main_rating_path, notice: params[:userId]
     end
   end  
   
@@ -32,7 +31,7 @@ class CartsController < ApplicationController
     item.popularity = item.popularity + 1
     item.save
     @cart.save
-  end  
+  end
   
   private
   # Never trust parameters from the scary internet, only allow the white list through.
