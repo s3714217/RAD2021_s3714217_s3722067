@@ -17,11 +17,6 @@ class LoginController < ApplicationController
           @notification =  "Email already exist"
           return
         end 
-        
-         if user.name == params[:username]
-          @notification = "Username already taken"
-          return
-         end
       end
      u = User.new(name: params[:username], email: params[:email], password: params[:password])
      u.save
