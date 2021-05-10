@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   def main
+    @test = "active"
     @current_user= User.first
     @items = Item.all
     @selected_item = params[:selected_item]
