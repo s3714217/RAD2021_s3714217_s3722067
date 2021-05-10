@@ -1,5 +1,7 @@
 
 <body>
+  
+   <p><h1 class="collection_title" style="text-align:center">Welcome <%=@current_user.name%></h1></p>
    <p><h1 class="collection_title">New & Trending</h1></p>
    
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -15,6 +17,7 @@
                  @test = "active"
                  @active = false
             end %>
+            
               <div class="carousel-item <%=@test%>">
                 <img class="d-block w-100" src=<%= item.asseturl%> alt=""  width="100%" height="100%">
                 <div class="card-body">
