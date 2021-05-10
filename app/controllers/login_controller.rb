@@ -18,7 +18,7 @@ class LoginController < ApplicationController
           return
         end 
         
-         if user.nam == params[:username]
+         if user.name == params[:username]
           @notification = "Username already taken"
           return
          end
