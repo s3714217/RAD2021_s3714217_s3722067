@@ -65,6 +65,13 @@
     <br>  
     <%= form.submit 'Filter', method: :post %>  
   <% end %> 
+    <br>  
+    <br>  
+  <%= form_with url: searched_path() do |form| %>
+    <%= form.label :search, "Search for:" %>
+    <%= form.text_field :search %>
+    <%= form.submit "Search" %>
+  <% end %> 
 
 
 <% if !notice %>

@@ -83,6 +83,15 @@ class MainController < ApplicationController
     item.size.split(",").include? size
   end
   
+  def searched
+    seacherItems = Item.where("name LIKE ?", "%#{params[:search]}%")
+    idArray = []
+    seacherItems.each do |item|
+      idArray << item.id
+    end
+    redirect_to '/main/testcollection', notice: idArray
+  end
+  
   def removed_saved
     ifloggedin = false
     if(session[:current_user_id])

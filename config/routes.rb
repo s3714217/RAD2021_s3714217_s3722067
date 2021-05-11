@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post :remove_item, to: 'carts#remove_item'
 
   post :filter_saved, to: 'main#filter_saved'
+  post :searched, to: 'main#searched'
   
   post :add_rating, to: 'users#add_rating'
   
