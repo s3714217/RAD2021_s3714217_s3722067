@@ -9,9 +9,17 @@
     <body>
         <div style="text-align:center ;color: red" ><%=@notification%></div>
         <h1 style="text-align:center; line-height:300%" > Log In</h1>
+
+        <% if(notice) %>
+            <h1 style="text-align:center; line-height:300%" > To add item to the bag you must log in</h1>    
+        <% end %>
+        
         <div class="container" >
             <%= form_tag action: 'login' do %> 
                 <form method="post" >
+                <% if(notice) %>
+                <div style="text-align:center" class="form-group">          <input  type="hidden" name="itemId" value= '<%= notice.to_json %>'></div>
+                <% end %>
                 <div style="text-align:center" class="form-group">Username: <input  type="text" name="username" placeholder="Enter username" pattern="[A-Za-z0-9]{1,20}"required></div>
                 <div style="text-align:center" class="form-group">Password: <input  type="password" name="password" placeholder="Enter password" pattern="[A-Za-z0-9]{1,20}"required></div>
                 <div style="text-align:center"><input type="submit" value="Login" name="login">

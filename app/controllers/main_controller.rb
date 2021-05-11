@@ -110,42 +110,22 @@ class MainController < ApplicationController
   end
   
   def to_saved
-    ifloggedin = false
-    if(session[:current_user_id])
-      ifloggedin = true
-    end
-    if(ifloggedin)
-      item = Item.find_by id: params[:itemId]
-      user = User.find_by id: session[:current_user_id]
-      if (!user.items.include?(item))
-        user.items << item
-        item.popularity =  item.popularity + 1
-        item.save
-      end
-    else
-      if(cookies[:vistorsavedlist])
-        array = cookies[:vistorsavedlist].split(",")
-        if(!array.include?params[:itemId])
-          item = Item.find_by id: params[:itemId]
-          item.popularity = item.popularity + 1
-          item.save
-          cookies[:vistorsavedlist] = cookies[:vistorsavedlist]+","+params[:itemId]
-        end
-      else    
-        cookies[:vistorsavedlist] = params[:itemId]
-      end
-    end
+    to_saved_param_with_user(params[:itemId], session[:current_user_id])
   end
   
     
   def to_saved_param(itemId)
+    to_saved_param_with_user(itemId, session[:current_user_id])
+  end
+  
+  def to_saved_param_with_user(itemId, userId)
     ifloggedin = false
-    if(session[:current_user_id])
+    if(userId)
       ifloggedin = true
     end
     if(ifloggedin)
       item = Item.find_by id: itemId
-      user = User.find_by id: session[:current_user_id]
+      user = User.find_by id: userId
       if (!user.items.include?(item))
         user.items << item
         item.popularity =  item.popularity + 1
@@ -166,8 +146,7 @@ class MainController < ApplicationController
     end
   end
   
-  
-  def cart_redirect
+  def cart_redirect()
     if(!session[:current_user_id])
       redirect_to login_login_path
     end

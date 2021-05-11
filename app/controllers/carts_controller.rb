@@ -25,6 +25,13 @@ class CartsController < ApplicationController
   
   # POST /add_to
   def add_to
+    if(!session[:current_user_id])
+      redirect_to login_login_path, notice: cart_params
+    end
+    add_to_with_param(cart_params)
+  end
+  
+  def add_to_with_param(cart_params)
     Cart.new
     @cart = Cart.new(cart_params)
     item = Item.find_by id: cart_params["item_id"]

@@ -9,6 +9,24 @@ class LoginController < ApplicationController
           return
         end
         session[:current_user_id] = @current_user.id
+        
+        if params[:itemId] && !params[:itemId].empty?
+          cart_params = JSON.parse params[:itemId].gsub('=>', ':')
+          cart_params[:user_id] = session[:current_user_id]
+          @CartsController = CartsController.new
+          @CartsController.add_to_with_param(cart_params)
+        end
+       
+        if cookies[:vistorsavedlist]
+          @arrayOfItems = cookies[:vistorsavedlist].split(",")
+          @arrayOfItems.each do |itemId|
+            @MainController = MainController.new
+            @MainController.to_saved_param_with_user(itemId,session[:current_user_id])
+          end
+          # Uncomment if local saved if should be deleted after login
+          # cookies.delete :vistorsavedlist
+        end
+        
         redirect_to main_main_path
     end
   end

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   
   post :add_to, to: 'carts#add_to'
   
+  post :add_to_with_param, to: 'carts#add_to_with_param'
+  
   get 'main/main' => 'main#main'
   post 'main/main' => 'main#main'
 

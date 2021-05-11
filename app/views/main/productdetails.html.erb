@@ -1,6 +1,4 @@
 <h1>Product Details</h1>
-  <% @id = 1 %>
-  
   <% item = Item.find_by id: notice %>
   
   <% 
@@ -24,7 +22,7 @@
       
       <%= form_with url: add_to_path() do |form| %>
         <div class="field">     
-          <%= form.hidden_field :user_id, value: @id%>
+          <%= form.hidden_field :user_id, value: session[:current_user_id] %>
           <%= form.hidden_field :item_id, value: item.id%>
           <div class="col-xs-3">
           <b>Size</b><br>
