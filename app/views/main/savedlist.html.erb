@@ -32,19 +32,27 @@
         <% if index == 0 %> <div class="carousel-item active"> 
         <% else %> <div class="carousel-item"> 
         <% end %>
-        <%= form_with url: to_productdetails_path() do |form| %>
-        <%= form.hidden_field :itemId, value: item.id %>
-        <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
+        
+        <div class=button-container>
+          <%= form_with url: to_productdetails_path() do |form| %>
+          <%= form.hidden_field :itemId, value: item.id %>
+          <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
+          <% end %>
+          <div class='saved'> SAVED </div>
+          <%= form_with url: removed_saved_path() do |form| %>
+            <%= form.hidden_field :itemId, value: item.id %>
+            <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+          <% end %> 
+        </div>
+        
         <h3><%= item.name %></h3>
         <h3>Price:</h3><td><%= item.price %></td>
         <br>
-        <% end %> 
         
         <%= form_with url: removed_saved_path() do |form| %>
           <%= form.hidden_field :itemId, value: item.id %>
           <%= form.submit 'Remove', method: :post %>
         <% end %> 
-        
       </div>
     <% end %>
     </div>

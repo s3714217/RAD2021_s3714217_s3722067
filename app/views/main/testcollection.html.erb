@@ -77,34 +77,55 @@
 <% if !notice %>
  <tbody>
     <% Item.all.each_with_index do |item, index| %>
-    <div class="container">
-     <%= form_with url: to_saved_path() do |form| %>
-        <%= form.hidden_field :itemId, value: item.id %>
-        <div class="container">
-        <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
-        </div>
-        <h3><%= item.name %></h3>
-        <h3>Price:</h3><td><%= item.price %></td>
-        <br>
+      <div class="container">
+        <%= form_with url: to_productdetails_path() do |form| %>
+            <%= form.hidden_field :itemId, value: item.id %>
+            <div class="container">
+            <div class=button-container>
+            <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
         <% end %> 
+            <% if is_in_saved_list(item.id) %>
+            <div class='saved'> SAVED </div>
+            <% end %>
+      
+            <%= form_with url: toggle_saved_path() do |form| %>
+            <%= form.hidden_field :itemId, value: item.id %>
+            <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+            <% end %> 
+            </div>
+            </div>
+          <h3><%= item.name %></h3>
+          <h3>Price:</h3><td><%= item.price %></td>
+          <br>
       </div>
     <% end %>
  </tbody>
  <% else %>
   <tbody>
-    
     <% Item.where(id: notice).each_with_index do |item, index| %>
     <div class="container">
      <%= form_with url: to_saved_path() do |form| %>
         <%= form.hidden_field :itemId, value: item.id %>
         <div class="container">
-        <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
+            <div class=button-container>
+                <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
+                <% end %> 
+                <% if is_in_saved_list(item.id) %>
+                <div class='saved'> SAVED </div>
+                <% end %>
+              
+                <%= form_with url: toggle_saved_path() do |form| %>
+                <%= form.hidden_field :itemId, value: item.id %>
+                <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+                <% end %> 
+            </div>
+        </div>
+
         </div>
         <h3><%= item.name %></h3>
         <h3>Price:</h3><td><%= item.price %></td>
         <br>
         <% end %> 
       </div>
-    <% end %>
  </tbody>
  <% end %>
