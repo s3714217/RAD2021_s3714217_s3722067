@@ -1,0 +1,85 @@
+
+  <di>Category</di>
+  
+  
+  <div class="Row">
+  <div class="Column"> 
+   <%= form_tag action: 'all_collection' do %> 
+   <%= hidden_field_tag'selected_cate',"All"%>
+   <%= submit_tag("All", :class => @all_tag)%> 
+   <% end %>
+   </div>
+   <div class="Column"> 
+   <%= form_tag action: 'all_collection' do %> 
+   <%= hidden_field_tag'selected_cate',"Men"%>
+   <%= submit_tag("Men", :class =>  @men_tag)%> 
+   <% end %>
+   </div>
+    <div class="Column"> 
+   <%= form_tag action: 'all_collection' do %> 
+   <%= hidden_field_tag'selected_cate',"Women"%>
+   <%= submit_tag("Women", :class => @women_tag )%> 
+   <% end %> </div>
+    <div class="Column">
+   <%= form_tag action: 'all_collection' do %> 
+   <%= hidden_field_tag'selected_cate',"Kids"%>
+   <%= submit_tag("Kids", :class => @kid_tag )%> 
+   <% end %> 
+   </div>
+   <div class="Column">
+   <%= form_tag action: 'all_collection' do %> 
+   <%= hidden_field_tag'selected_cate',"New"%>
+   <%= submit_tag("New", :class => @new_tag  )%> 
+   <% end %>
+   </div>
+  </div>
+  
+     
+    <%= form_tag action: 'all_collection' do %> 
+    <div>
+    <di>Tags</di>
+    <% @all_tags.each do |t| %>
+    <%= label_tag(t, t) %> <%= check_box_tag t, t%>
+    <% end%>
+    </div>
+    
+    <div>
+    <di>Size</di>
+    <% @all_size.each do |t| %>
+    <%= label_tag(t, t) %> <%= check_box_tag t, t%>
+    <% end%>
+    </div>
+    
+    <div>
+    <di>Colour</di>
+    <% @all_colour.each do |t| %>
+    <%= label_tag(t, t) %> <%= check_box_tag t, t%>
+    <% end%>
+    </div>
+    
+    
+    <%= submit_tag("Filter", :class => 'btn btn-light' )%> 
+    <% end %> 
+    
+    <%= form_tag action: 'all_collection' do %>
+    <%= label_tag("Search") %>
+    <%= text_field_tag'search_text', params['search_text'] %>
+    <%= submit_tag("Searh", :class => 'btn btn-light' )%> 
+    <% end %>
+
+<p><h1 class="collection_title" style="text-align:center">All Collection</h1></p>
+
+<div class="row">
+    <div class="column">
+            <% @displaying_items.each do |item| %>
+                    <div class="wrapper">
+                   <%= image_tag(item.asseturl, width: 300, height: 300, display: "d-block w-100") %>
+                   <h4 class="card-title"><%= item.name%></h4>
+                   <%= form_tag action: 'all_collection' do %> 
+                   <%= hidden_field_tag'selected_item',item.id%>
+                   <%= submit_tag("Save Item", :class => 'btn btn-light' )%> 
+                   <% end %> 
+                   </div>
+            <%end%>
+    </div>
+</div>
