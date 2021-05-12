@@ -107,7 +107,7 @@ class MainController < ApplicationController
     end
     
     if(ifloggedin)  
-      item = Item.find_by id: params[:itemId]
+      item = Item.find_by id: itemId
       user = User.find_by id: session[:current_user_id]
       user.items.include?(item)
     else
@@ -183,7 +183,9 @@ class MainController < ApplicationController
         cookies[:vistorsavedlist] = itemId
       end
     end
-    redirect_to request.referrer
+    if request
+      redirect_to request.referrer
+    end
   end
   
   def cart_redirect()
