@@ -1,34 +1,35 @@
 
 <body>
-   <% if session[:current_user_id]%>
-   <p><h1 class="collection_title" style="text-align:center">Welcome <%=@current_user.name%></h1></p>
-   <% else %>
-   <p><h1 class="collection_title" style="text-align:center">Welcome Guest</h1></p>
-   <% end%>
-   <p><h1 class="collection_title">New & Trending</h1></p>
+   
+   
+   <p><h1 class="collection_title" style="text-align:center">New & Trending</h1></p>
    
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <% @active = true %>
         <% @items.each do |item| %>
           
-          <% if item.category == "new" %>
+          <%
+          
+          str = item.category
+          str = str.split(",")
+           if str.include? "New" and !@savedlist.include?(item)%>
            <% if @active == false
-                @test = ""
+                @active_item = ""
            end%>
            <% if @active == true
-                 @test = "active"
+                 @active_item = "active"
                  @active = false
             end %>
             
-              <div class="carousel-item <%=@test%>">
-                <img class="d-block w-100" src=<%= item.asseturl%> alt=""  width="100%" height="100%">
+              <div class="carousel-item <%=@active_item%>">
+                <%= image_tag(item.asseturl, width: 300, height: 300, display: "d-block w-100") %>
                 <div class="card-body">
                 <h4 class="card-title"><%= item.name%></h4>
                   <div class="wrapper">
                   <%= form_tag action: 'main' do %> 
                   <%= hidden_field_tag'selected_item', item.id %>
-                  <%= submit_tag("Add to Cart", :class => 'btn btn-light' )%> 
+                  <%= submit_tag("Save Item", :class => 'btn btn-light' )%> 
                   <% end %> 
                   </div>
                 </div>
@@ -49,30 +50,25 @@
       </a>
     </div>
   
-    <p><h1 class="collection_title">Popular</h1></p>
+    <p><h1 class="collection_title" style="text-align:center">Popular</h1></p>
    <div id="carouselControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <% @active = true %>
         <% @items.each do |item| %>
           
-          <% if item.category == "popular" %>
+          <% if item.popularity > 0 %>
            <% if @active == false
-                @test = ""
+                @active_item = ""
            end%>
            <% if @active == true
-                 @test = "active"
+                 @active_item = "active"
                  @active = false
             end %>
-              <div class="carousel-item <%=@test%>">
-                <img class="d-block w-100" src=<%= item.asseturl%> alt="" width="100%" height="100%">
+              <div class="carousel-item <%=@active_item%>">
+                <%= image_tag(item.asseturl, width: 300, height: 500, display: "d-block w-100") %>
                 <div class="card-body">
                 <h4 class="card-title"><%= item.name%></h4>
-                  <div class="wrapper">
-                  <%= form_tag action: 'main' do %> 
-                  <%= hidden_field_tag'selected_item', item.id %>
-                  <%= submit_tag("Add to Cart", :class => 'btn btn-light' )%> 
-                  <% end %> 
-                  </div>
+               
                 </div>
               </div>
             
@@ -91,8 +87,8 @@
       </a>
     </div>
   
-    <p><h1 class="collection_title" href="google.com">Collection</h1> </p>
-    <p><a href="www.google.com">View All</a></p>
+    <p><h1 class="collection_title" style="text-align:center">Collection </h1> </p>
+    <p style="text-align:center"><a href=<%=main_all_collection_path%>>View All</a></p>
     
     <div class="collection_wrapper">
     <div class="row">

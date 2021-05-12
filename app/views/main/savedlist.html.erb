@@ -34,7 +34,7 @@
         <% end %>
         <%= form_with url: to_productdetails_path() do |form| %>
         <%= form.hidden_field :itemId, value: item.id %>
-        <%= image_submit_tag(item.asseturl, width: 300, height: 400, display: "block") %>
+        <%= image_submit_tag(item.asseturl, width: 200, height: 300, display: "block") %>
         <h3><%= item.name %></h3>
         <h3>Price:</h3><td><%= item.price %></td>
         <br>

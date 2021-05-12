@@ -1,15 +1,31 @@
 class MainController < ApplicationController
   def main
-    @test = "active"
+    
+    
+    @active_item = "active"
     @current_user = User.find_by_id(session[:current_user_id])
-
     @items = Item.all
+    @savedlist = []
+    if session[:current_user_id] == nil 
+      if cookies[:vistorsavedlist] != nil
+       visitor_list = cookies[:vistorsavedlist].split(",")
+       visitor_list.each do |i|
+             @savedlist.append(Item.find_by_id(i))
+       
+       end
+     end
+    else
+             @savedlist = @current_user.items
+    end
+    
+
     @selected_item = params[:selected_item]
     if @selected_item != nil
-      #Adding Item to cookies if guest
       to_saved_param(@selected_item)
       @selected_item = nil
+      redirect_to '/main/main'
     end
+    
     
   end
 
@@ -60,7 +76,7 @@ class MainController < ApplicationController
     filteredItems.each do |item|
       idArray << item.id
     end
-    redirect_to '/main/testcollection', notice: idArray
+    redirect_to  main_collection_path, notice: idArray
   end
   
   
@@ -89,7 +105,7 @@ class MainController < ApplicationController
     seacherItems.each do |item|
       idArray << item.id
     end
-    redirect_to '/main/testcollection', notice: idArray
+    redirect_to  main_collection_path, notice: idArray
   end
   
   def removed_saved
@@ -161,5 +177,161 @@ class MainController < ApplicationController
     end
   end
   helper_method :cart_redirect
+  
+  def all_collection
+    
+    @items = Item.all
+    @displaying_items = [] 
+    
+    if params[:search_text] != nil
+      seacherItems = Item.where("name LIKE ?", "%#{params[:search_text]}%")
+      
+    end
+    
+    @selected_item = params[:selected_item]
+    if @selected_item != nil
+      to_saved_param(@selected_item)
+      @selected_item = nil
+    end
+    
+    @all_tags = []
+       @items.each do |item|
+        str = item.tag.split(",")
+           str.each do |s| 
+               if !@all_tags.include?(s)
+                   @all_tags.append(s)
+              end
+            end
+        end
+    
+    @all_size = []
+       @items.each do |item|
+        str = item.size.split(",")
+           str.each do |s| 
+               if !@all_size.include?(s)
+                   @all_size.append(s)
+              end
+            end
+        end
+        
+    @all_colour= []
+       @items.each do |item|
+        str = item.colour.split(",")
+           str.each do |s| 
+               if !@all_colour.include?(s)
+                   @all_colour.append(s)
+              end
+            end
+        end
+   
+    
+    @all_tag = 'btn btn-light'
+    @men_tag = 'btn btn-light'
+    @women_tag = 'btn btn-light'
+    @kid_tag = 'btn btn-light'
+    @new_tag = 'btn btn-light'
+    
+    
+    if params[:selected_cate] != nil
+      @items.each do |item|
+        
+        str = item.category.split(",")
+        
+         if str.include?(params[:selected_cate])
+           @displaying_items.append(item)
+         end
+      end
+    end
+    case params[:selected_cate]
+    
+    when "All"
+      @all_tag = 'btn btn-light active'
+      @displaying_items = @items
+    when "Men"
+      @men_tag = 'btn btn-light active'
+    when "Women"
+      @women_tag = 'btn btn-light active'
+    when "Kids"
+      @kid_tag = 'btn btn-light active'
+    when "New"
+      @new_tag = 'btn btn-light active'
+    else
+      @all_tag = 'btn btn-light active'
+      @displaying_items = @items
+    end
+    
+    @all_tags.each do |t|
+      puts params[t]
+    end
+     @all_colour.each do |t|
+       puts params[t]
+    end
+     @all_size.each do |t|
+       puts params[t]
+    end
+    
+    temp = @displaying_items
+    @displaying_items = []
+    filtered = false
+    
+    @all_tags.each do |t|
+      if params[t] != nil
+        puts(t)
+       temp.each do |i|
+         if i.tag.include?(params[t])
+           if !@displaying_items.include?(i) 
+             @displaying_items.append(i)
+             filtered = true
+           end
+         end
+       end
+     end
+    end
+    if !filtered
+      @displaying_items = temp
+    end
+    
+    
+    temp = @displaying_items
+    @displaying_items = []
+     filtered = false
+    @all_colour.each do |t|
+      if params[t] != nil
+        puts(t)
+       temp.each do |i|
+         if i.colour.include?(params[t])
+           if !@displaying_items.include?(i) 
+             @displaying_items.append(i)
+             filtered = true
+           end
+         end
+       end
+     end
+    end
+    if !filtered
+      @displaying_items = temp
+    end
+    
+    temp = @displaying_items
+    @displaying_items = []
+     filtered = false
+    @all_size.each do |t|
+      if params[t] != nil
+        puts(t)
+       temp.each do |i|
+         if i.size.include?(params[t])
+           if !@displaying_items.include?(i) 
+             @displaying_items.append(i)
+             filtered = true
+           end
+         end
+       end
+     end
+    end
+    
+    if !filtered
+      @displaying_items = temp
+    end
+  end
   
 end
