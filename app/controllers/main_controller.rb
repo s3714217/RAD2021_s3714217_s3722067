@@ -108,13 +108,44 @@ class MainController < ApplicationController
     redirect_to  main_collection_path, notice: idArray
   end
   
+  def toggle_saved
+    if is_in_saved_list(params[:itemId])
+      removed_saved_param(params[:itemId])
+    else
+      to_saved_param(params[:itemId])
+    end
+  end
+  
+  def is_in_saved_list(itemId)
+    ifloggedin = false
+    if(session[:current_user_id])
+      ifloggedin = true
+    end
+    
+    if(ifloggedin)  
+      item = Item.find_by id: itemId
+      user = User.find_by id: session[:current_user_id]
+      user.items.include?(item)
+    else
+      if cookies[:vistorsavedlist]
+        array = cookies[:vistorsavedlist].split(",")
+        array.include?(itemId.to_s)
+      end
+    end
+  end
+  helper_method :is_in_saved_list
+  
   def removed_saved
+    removed_saved_param(params[:itemId])
+  end
+  
+  def removed_saved_param(itemId)
     ifloggedin = false
     if(session[:current_user_id])
       ifloggedin = true
     end
     if(ifloggedin)        
-      item = Item.find_by id: params[:itemId]
+      item = Item.find_by id: itemId
       user = User.find_by id: session[:current_user_id]
       user.items.delete(item)
       item.popularity =  item.popularity - 1
@@ -127,17 +158,16 @@ class MainController < ApplicationController
       else
         cookies[:vistorsavedlist] = array.join(',')
       end
-      item = Item.find_by id: params[:itemId]
+      item = Item.find_by id: itemId
       item.popularity =  item.popularity - 1
       item.save
     end
-    redirect_to '/main/savedlist'
+    redirect_to request.referrer
   end
   
   def to_saved
     to_saved_param_with_user(params[:itemId], session[:current_user_id])
   end
-  
     
   def to_saved_param(itemId)
     to_saved_param_with_user(itemId, session[:current_user_id])
@@ -168,6 +198,9 @@ class MainController < ApplicationController
       else    
         cookies[:vistorsavedlist] = itemId
       end
+    end
+    if request
+      redirect_to request.referrer
     end
   end
   
