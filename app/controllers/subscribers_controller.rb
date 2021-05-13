@@ -24,16 +24,20 @@ class SubscribersController < ApplicationController
   # POST /subscribers
   # POST /subscribers.json
   def create
-    @subscriber = Subscriber.new(subscriber_params)
-    UserNewsletterMailer.send_signup_email(@subscriber).deliver_now
-    respond_to do |format|
-      if @subscriber.save
-        format.html { redirect_to :root, notice: 'Subscription was successfully created.' }
-        format.json { render :show, status: :created, location: @subscriber }
-      else
-        format.html { redirect_to :root, notice: 'Subscription was not able to be created.'}
-        format.json { render json: @subscriber.errors, status: :unprocessable_entity }
+    if Subscriber.where(email: params["subscriber"]["email"]).empty?
+      @subscriber = Subscriber.new(subscriber_params)
+      respond_to do |format|
+        if @subscriber.save
+          UserNewsletterMailer.send_signup_email(@subscriber).deliver_now
+          format.html { redirect_to :root, notice: 'Subscription was successfully created.' }
+          format.json { render :show, status: :created, location: @subscriber }
+        else
+          format.html { redirect_to :root, notice: 'Subscription was not able to be created.'}
+          format.json { render json: @subscriber.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to main_main_path, notice: 'You are already subscribed' 
     end
   end
 
