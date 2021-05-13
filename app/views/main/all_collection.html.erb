@@ -73,7 +73,23 @@
     <div class="column">
             <% @displaying_items.each do |item| %>
                     <div class="wrapper">
-                   <%= image_tag(item.asseturl, width: 300, height: 300, display: "d-block w-100") %>
+                      
+                      <div class=button-container>
+       	                <%= form_with url: to_productdetails_path() do |form| %>
+                        <%= form.hidden_field :itemId, value: item.id %>
+                        <%= image_submit_tag(item.asseturl, width: 300, height: 300, display: "d-block w-100") %>
+                        <% end %> 
+
+                        <% if is_in_saved_list(item.id) %>
+                        <div class='saved'> SAVED </div>
+                        <% end %>
+      
+                        <%= form_with url: toggle_saved_path() do |form| %>
+                        <%= form.hidden_field :itemId, value: item.id %>
+                        <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+                        <% end %> 
+                        </div>  
+        
                    <h4 class="card-title"><%= item.name%></h4>
                    <%= form_tag action: 'all_collection' do %> 
                    <%= hidden_field_tag'selected_item',item.id%>
