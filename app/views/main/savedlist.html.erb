@@ -1,12 +1,13 @@
 <h1>Product Details</h1>
 
+  <%
   itemsNo = 0
   itemsList = nil
   ifloggedin = false
   if(session[:current_user_id])
     ifloggedin = true
   end
-  if(ifloggedin)        
+  if(ifloggedin)
     @user = User.find_by id: session[:current_user_id]
     itemsNo = @user.items.size
     itemsList = @user.items
