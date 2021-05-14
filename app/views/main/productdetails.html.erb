@@ -1,16 +1,7 @@
 <h1>Product Details</h1>
-  <% item = Item.find_by id: notice %>
-  
-  <% 
-  sizeOptionArray = Array.new(item.size.split(",").size) { Array.new(2) }
-  item.size.split(",").each_with_index do |size, index|
-    sizeOptionArray[index] = [size,size]
-  end
-
-  colourOptionArray = Array.new(item.colour.split(",").size) { Array.new(2) }
-  item.colour.split(",").each_with_index do |colour, index|
-    colourOptionArray[index] = [colour,colour]
-  end
+  <% item = Item.find_by id: notice 
+  sizeOptionArray = getSizeOptionArray(item)
+  colourOptionArray = getColourOptionArray(item)
   %>
   
  <tbody>

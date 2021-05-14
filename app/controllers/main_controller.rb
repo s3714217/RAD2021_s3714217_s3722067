@@ -367,4 +367,28 @@ class MainController < ApplicationController
     end
   end
   
+  def getSizeOptionArray(item)
+    sizeOptionArray = Array.new(item.size.split(",").size) { Array.new(2) }
+    item.size.split(",").each_with_index do |size, index|
+      sizeOptionArray[index] = [size,size]
+    end
+  end
+  helper_method :getSizeOptionArray
+    
+  def getColourOptionArray(item)
+    colourOptionArray = Array.new(item.colour.split(",").size) { Array.new(2) }
+    item.colour.split(",").each_with_index do |colour, index|
+      colourOptionArray[index] = [colour,colour]
+    end
+  end
+  helper_method :getColourOptionArray
+  
+  def is_logged_in
+    ifloggedin = false
+    if(session[:current_user_id])
+      ifloggedin = true
+    end
+  end
+  helper_method :is_logged_in
+    
 end
