@@ -60,6 +60,38 @@ class LoginController < ApplicationController
     end
   end
   
+  def update_details
+    @all_user = User.all
+    @user = User.find_by id: session[:current_user_id]
+    @notification = ""
+    
+    if !@user.authenticate(params[:oldpassword])
+      @notification =  "Wrong Password"
+      return
+    end 
+        
+    if params[:password] != params[:repassword]
+      @notification =  "Confirm password does not match"
+      return
+    end 
+    
+    
+    if  params[:email] != nil
+      @all_user.each do |user|
+
+        if user.email == params[:email] && user.email != @user.email
+          @notification =  "Email already exist"
+          return
+        end 
+        
+      end
+    # u = User.new(name: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:repassword])
+    # u.save
+     User.update(session[:current_user_id], email: params[:email], password: params[:password], password_confirmation: params[:repassword])
+     redirect_to main_main_path
+    end
+  end
+  
   def logout
     session[:current_user_id] = nil
     redirect_to main_main_path

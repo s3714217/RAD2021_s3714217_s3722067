@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'login/update_details'
+
+  get 'main/profile'
+
   get 'main/all_collection'
 
   get 'login/logout'
@@ -9,9 +13,11 @@ Rails.application.routes.draw do
   get 'main/savedlist'
   get 'login/login' => 'login#login'
   get 'login/sign_up' => 'login#sign_up'
+  get 'login/update_details' => 'login#update_details'
   
   post 'login/sign_up' => 'login#sign_up'
   post 'login/login' => 'login#login'
+  post 'login/update_details' => 'login#update_details'
   
   post 'main/all_collection' => 'main#all_collection'
   
@@ -30,6 +36,7 @@ Rails.application.routes.draw do
   post :filter_saved, to: 'main#filter_saved'
   post :searched, to: 'main#searched'
   
+  post :toggle_subscriber, to: 'subscribers#toggle_subscriber'
   post :toggle_saved, to: 'main#toggle_saved'
   post :add_rating, to: 'users#add_rating'
   

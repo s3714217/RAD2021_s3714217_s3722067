@@ -28,14 +28,6 @@ class MainController < ApplicationController
     
     
   end
-
-  def about
-   
-  end
-
-  def contact
-    
-  end
   
   def to_productdetails
     redirect_to '/main/productdetails', notice: params[:itemId]
@@ -390,5 +382,10 @@ class MainController < ApplicationController
     end
   end
   helper_method :is_logged_in
+  
+  def to_main
+    redirect_to main_main_path
+  end
+  helper_method  :to_main
     
 end

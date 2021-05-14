@@ -40,6 +40,24 @@ class SubscribersController < ApplicationController
       redirect_to main_main_path, notice: 'You are already subscribed' 
     end
   end
+  
+  def toggle_create
+    if Subscriber.where(email: params["subscriber"]["email"]).empty?
+      @subscriber = Subscriber.new(subscriber_params)
+      respond_to do |format|
+        if @subscriber.save
+          UserNewsletterMailer.send_signup_email(@subscriber).deliver_now
+          format.html { redirect_to main_profile_path, notice: 'Subscription was successfully created.' }
+          format.json { render :show, status: :created, location: @subscriber }
+        else
+          format.html { redirect_to main_profile_path, notice: 'Subscription was not able to be created.'}
+          format.json { render json: @subscriber.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to main_main_path, notice: 'You are already subscribed' 
+    end
+  end
 
   # PATCH/PUT /subscribers/1
   # PATCH/PUT /subscribers/1.json
@@ -60,9 +78,24 @@ class SubscribersController < ApplicationController
   def destroy
     @subscriber.destroy
     respond_to do |format|
-      format.html { redirect_to subscribers_url, notice: 'Subscriber was successfully destroyed.' }
+      UserNewsletterMailer.send_breakup_email(@subscriber).deliver_now
+      format.html { redirect_to main_profile_path, notice: 'You have now unsubscribed to the newsletter.' }
       format.json { head :no_content }
     end
+  end
+  
+  def toggle_subscriber
+    user = User.find_by id: session[:current_user_id]
+    subscriber = Subscriber.where(email: user.email)
+     
+    if subscriber.empty?
+      new()
+      toggle_create()
+    else
+      @subscriber = Subscriber.find(subscriber.ids[0])
+      destroy()
+    end
+  
   end
 
   private

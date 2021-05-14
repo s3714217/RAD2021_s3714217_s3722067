@@ -27,6 +27,9 @@
                   end
                 %>
                 <li class="nav-item"><a class="nav-link" href=<%= @path %>><%=@status%></a></li>
+                <% if User.find_by_id(session[:current_user_id]) != nil %>
+                   <li class="nav-item"><a class="nav-link" href=<%= main_profile_path %>>Profile</a></li>
+                <% end %>
     </ul>
   </div>  
      <%= link_to "Ruby Fashion", main_main_path, id: "logo"%>
