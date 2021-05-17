@@ -1,7 +1,7 @@
 <% if is_logged_in() && is_admin() %>
 
-<h1>Admin#admin</h1>
-<p>Find me in app/views/admin/admin.html.erb</p>
+<h1>Admin Page</h1>
+
 
 <!--A simple portal, of which the address is <your app’s url>/admin. It allows admin-->
 
@@ -13,19 +13,22 @@
 <% @users.each do |user| %>
   <%itemsList = user.items%>
     <h3>Username : <%= user.name %></h2>
+    <ol>
     <%itemsList.each do |item| %>
-    <h3><%= item.name %></h3>
-<%  end %>
+      <li><%= item.name %></li>
+    <%  end %>
+    </ol>
 <%  end %>
 
 
 <h2>Purchased items</h2>
+<ol>
 <% @purchases.each do |purchase| %>
     <% user = User.find_by id: purchase.user_id %>
     <% item = Item.find_by id: purchase.item_id %>
-    <h3>User: <%= user.name %> has purchased <%= item.name %> of Colour: <%=purchase.colour %> of Size: <%=purchase.size %> of Quantity: <%=purchase.quantity %></h3>"
+    <li>User: <%= user.name %>  <br/> Item: <%= item.name %> <br/> Colour: <%=purchase.colour %> <br/> Size: <%=purchase.size %> <br/> Quantity: <%=purchase.quantity %></li>
 <% end %>
-
+</ol>
  
 <h2>Overall ratings</h2>
 <%
@@ -55,13 +58,15 @@
     <h3>App has no ratings</h3>
 <% else %>
     <% average = (ratingTotal/totalUsersWithRating.to_f) %>
-    <h3>Average score out of 4 is <%= average %></h3>
+    <h3>Average score out of 4 is <%= average %> from <%=totalUsersWithRating%> Users </h3>
 <% end %>
 
 <h2>Newsletter subscriptions</h2>
+<ol>
 <% @subs.each do |subscriptions| %>
-    <h3><%= subscriptions.email %></h3>"
+    <li><%= subscriptions.email %></li>
 <% end %>
+</ol>
 
 <% else to_main() %>
 <% end %>
