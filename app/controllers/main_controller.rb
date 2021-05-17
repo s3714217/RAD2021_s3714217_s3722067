@@ -1,7 +1,5 @@
 class MainController < ApplicationController
   def main
-    
-    
     @active_item = "active"
     @current_user = User.find_by_id(session[:current_user_id])
     @items = Item.all
@@ -382,10 +380,5 @@ class MainController < ApplicationController
     end
   end
   helper_method :is_logged_in
-  
-  def to_main
-    redirect_to main_main_path
-  end
-  helper_method  :to_main
     
 end
