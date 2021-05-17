@@ -1,0 +1,54 @@
+<h1>Admin#admin</h1>
+<p>Find me in app/views/admin/admin.html.erb</p>
+
+<!--A simple portal, of which the address is <your app’s url>/admin. It allows admin-->
+
+<% @users = User.all %>
+<% @subs = Subscriber.all %>
+
+<h2>"Summary of saved items"</h2>
+<% @users.each do |user| %>
+  <%itemsList = user.items%>
+    <h3>Username : <%= user.name %></h2>
+    <%itemsList.each do |item| %>
+    <h3><%= item.name %></h3>
+<%  end %>
+<%  end %>
+
+<!--Purchased items-->
+ 
+<h2>Overall ratings</h2>
+<%
+  ratingTotal = 0
+  totalUsersWithRating = 0
+  @users.each do |user| 
+    rating = user.rating
+    if rating
+      case rating.ratingscore
+      when 'So Bad'
+        ratingTotal += 1
+      when 'Okay'
+        ratingTotal += 2
+      when 'Good'
+        ratingTotal += 3
+      when 'Amazing'
+        ratingTotal += 4
+      else
+        totalUsersWithRating -= 1
+      end
+      totalUsersWithRating += 1
+    end
+  end
+%>
+
+<% if totalUsersWithRating == 0 %>
+    <h3> "App has no ratings" </h3>
+<% else %>
+    <% average = (ratingTotal/totalUsersWithRating.to_f) %>
+    <h3> "Average score out of 4 is" <%= average %></h3>
+<% end %>
+
+<h2>"Newsletter subscriptions"</h2>
+<% @subs.each do |subscriptions| %>
+    <h3><%= subscriptions.email %></h3>"
+<% end %>

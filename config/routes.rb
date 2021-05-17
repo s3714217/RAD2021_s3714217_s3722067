@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admin/admin'
   get 'login/update_details'
 
   get 'main/profile'
