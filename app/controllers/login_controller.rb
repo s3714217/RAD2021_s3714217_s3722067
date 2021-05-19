@@ -1,5 +1,22 @@
 class LoginController < ApplicationController
   def login
+    
+    token = request.url.split(".").last
+    
+    if token.include?("token:")
+      token = token.split("token:").last
+      if AccessToken.find_by_token(token) != nil
+        session[:current_user_id] = AccessToken.find_by_token(token).user_id
+        AccessToken.find_by_token(token).destroy
+        puts AccessToken.all.length
+        redirect_to main_main_path
+      else
+        @notification = "Your access URL has expired"
+      end
+      
+      return
+    end
+    
     @notification = ""
     if params[:username] != nil
         @current_user = User.find_by(name:params[:username]).try(:authenticate, params[:password])
@@ -95,5 +112,34 @@ class LoginController < ApplicationController
   def logout
     session[:current_user_id] = nil
     redirect_to main_main_path
+  end
+  
+  def forgot_pwd
+    if params[:email] != nil
+      
+      @user = User.where("email LIKE ?", "#{params[:email]}")
+      if @user.first != nil
+        @notification = "A recover url has been sent to your email"
+        token = generate_access_token()
+        token_url = "https://#{request.env['HTTP_HOST']}" + login_login_path+ ".token:" + token
+        send_access_token(token_url, @user.first.email, token)
+        
+      else
+        @notification = "Email has not been registered"
+      end
+      
+    end
+  end
+  
+  def generate_access_token()
+     return random_number = SecureRandom.hex(20)
+  end 
+  
+  def send_access_token(token_url, email, token)
+    puts token_url
+    user = User.find_by_email(email)
+    t = AccessToken.new(email: email,user_id: user.id ,token: token )
+    t.save
+    UserNewsletterMailer.send_recover_email(token_url, email).deliver_now
   end
 end

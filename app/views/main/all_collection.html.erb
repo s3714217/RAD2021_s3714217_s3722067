@@ -1,5 +1,75 @@
+ <script type="text/javascript">
+  $(function() {
+    $('.tag_all').click(function() {
+      if(this.checked) {
+          $('.tag').each(function() {
+              this.checked = false;                        
+          });
+      } else {
+         $('.tag_all').each(function() {
+              this.checked = false;                        
+          });
+      } 
+   });
+ 
+ 
+   $('.tag').click(function() {
+      if(this.checked) {
+          $('.tag_all').each(function() {
+              this.checked = false;                        
+          });
+      }
+   });
+   
+   
+   
+   $('.size_all').click(function() {
+      if(this.checked) {
+          $('.size').each(function() {
+              this.checked = false;                        
+          });
+      } else {
+         $('.size_all').each(function() {
+              this.checked = false;                        
+          });
+      } 
+   });
+ 
+ 
+   $('.size').click(function() {
+      if(this.checked) {
+          $('.size_all').each(function() {
+              this.checked = false;                        
+          });
+      }
+   });
+   
+   $('.colour_all').click(function() {
+      if(this.checked) {
+          $('.colour').each(function() {
+              this.checked = false;                        
+          });
+      } else {
+         $('.colour').each(function() {
+              this.checked = false;                        
+          });
+      } 
+   });
+ 
+ 
+   $('.colour').click(function() {
+      if(this.checked) {
+          $('.colour_all').each(function() {
+              this.checked = false;                        
+          });
+      }
+   });
+   
+  
+  });
+  </script>
 
-  <di>Category</di>
+<di>Category</di>
   
   
   <div class="Row">
@@ -38,22 +108,25 @@
     <%= form_tag action: 'all_collection' do %> 
     <div>
     <di>Tags</di>
+    <%= label_tag("All", "All") %> <%= check_box_tag "All", "All", true,{:class => "tag_all"}%>
     <% @all_tags.each do |t| %>
-    <%= label_tag(t, t) %> <%= check_box_tag t, t%>
+    <%= label_tag(t, t) %> <%= check_box_tag t, t, false,{:class => "tag"}%>
     <% end%>
     </div>
     
     <div>
     <di>Size</di>
+    <%= label_tag("All", "All") %> <%= check_box_tag "All", "All", true, {:class => "size_all"}%>
     <% @all_size.each do |t| %>
-    <%= label_tag(t, t) %> <%= check_box_tag t, t%>
+    <%= label_tag(t, t) %> <%= check_box_tag t, t, false,{:class => "size"}%>
     <% end%>
     </div>
     
     <div>
     <di>Colour</di>
+    <%= label_tag("All", "All") %> <%= check_box_tag "All", "All", true, {:class => "colour_all"}%>
     <% @all_colour.each do |t| %>
-    <%= label_tag(t, t) %> <%= check_box_tag t, t%>
+    <%= label_tag(t, t) %> <%= check_box_tag t, t, false,{:class => "colour"}%>
     <% end%>
     </div>
     
