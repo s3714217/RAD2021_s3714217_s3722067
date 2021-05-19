@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'login/forgot_pwd'
+
   get 'login/update_details'
 
   get 'main/profile'
@@ -63,6 +65,11 @@ Rails.application.routes.draw do
   
   get 'newsletter_signup', to: 'subscribers#new'
   post 'newsletter_signup', to: 'subscribers#create'
-
+  
+  get 'login/forgot_pwd', to: 'login#forgot_pwd'
+  post 'login/forgot_pwd', to: 'login#forgot_pwd'
+  
+  get '/auth/callback'
+  post '/auth/callback'
   root 'main#main'
 end
