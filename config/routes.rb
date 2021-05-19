@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'login/forgot_pwd'
 
+  get '/admin', to: 'admin#admin'
+  
+  get 'admin/admin'
   get 'login/update_details'
 
   get 'main/profile'

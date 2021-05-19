@@ -4,6 +4,8 @@ class CartsController < ApplicationController
   def remove_items
     @cart = Cart.where(:user_id => params[:userId])
     @cart.each do |cartitem| 
+      purchase = Purchase.new(item_id: cartitem.item_id, user_id: cartitem.user_id, size: cartitem.size, colour: cartitem.colour, quantity: cartitem.quantity)
+      purchase.save
       cartitem.delete
     end
     user = User.find_by id: params[:userId]

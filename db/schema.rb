@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 20210519120032) do
     t.integer "user_id", null: false
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "user_id", null: false
+    t.string "size"
+    t.string "colour"
+    t.integer "quantity"
+    t.index ["item_id"], name: "index_purchases_on_item_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.string "ratingscore"
     t.integer "user_id"

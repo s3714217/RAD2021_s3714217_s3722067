@@ -1,7 +1,5 @@
 class MainController < ApplicationController
   def main
-    
-    
     @active_item = "active"
     @current_user = User.find_by_id(session[:current_user_id])
     @items = Item.order('popularity DESC')
@@ -396,4 +394,12 @@ class MainController < ApplicationController
     return display_items
   end
   
+  def is_logged_in
+    ifloggedin = false
+    if(session[:current_user_id])
+      ifloggedin = true
+    end
+  end
+  helper_method :is_logged_in
+    
 end

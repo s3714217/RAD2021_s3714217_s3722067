@@ -68,6 +68,8 @@ u2 = User.new(name: "RAD", email: "rad2021rmit@gmail.com", password: "Rails2021"
 u2.save
 u3 = User.new(name: "Thien", email: "thien@gmail.com", password: "123456789", password_confirmation: "123456789")
 u3.save
+u4 = User.new(name: "admin", email: "danny_le@y7mail.com", password: "Rails2021", password_confirmation: "Rails2021")
+u4.save
 
 ActiveRecord::Base.connection.execute("DELETE from 'items_users'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'items_users'")
