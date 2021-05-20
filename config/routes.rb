@@ -16,8 +16,7 @@ Rails.application.routes.draw do
 
   get 'main/main' => 'main#main'
   post 'main/main' => 'main#main'
-  get 'main/about'
-  get 'main/contact'
+  get 'main/helpsupport'
   get 'main/productdetails'
   get 'main/checkout'
   get 'main/profile'
@@ -30,33 +29,25 @@ Rails.application.routes.draw do
   get 'newsletter_signup', to: 'subscribers#new'
   post 'newsletter_signup', to: 'subscribers#create'
   
+  post :to_productdetails, to: 'main#to_productdetails'
+  post :to_saved, to: 'main#to_saved'
+  post :removed_saved, to: 'main#removed_saved'
+  post :toggle_saved, to: 'main#toggle_saved'
+  
+  post :add_to, to: 'carts#add_to'
+  post :add_to_with_param, to: 'carts#add_to_with_param'
   post :remove_items, to: 'carts#remove_items'
   post :remove_item, to: 'carts#remove_item'
   
   post :toggle_subscriber, to: 'subscribers#toggle_subscriber'
-  post :toggle_saved, to: 'main#toggle_saved'
+
   post :add_rating, to: 'users#add_rating'
-  
-  post :to_saved, to: 'main#to_saved'
-  
-  post :removed_saved, to: 'main#removed_saved'
-  
-  post :to_productdetails, to: 'main#to_productdetails'
-  
-  post :add_to, to: 'carts#add_to'
-  
-  post :add_to_with_param, to: 'carts#add_to_with_param'
-  
   
   get '/auth/callback'
   post '/auth/callback'
   
   resources :items
-  resources :users do
-    member do
-      post :remove_items, to: 'users#remove_items'
-    end
-  end
+  resources :users
   resources :subscribers
   resources :carts
   

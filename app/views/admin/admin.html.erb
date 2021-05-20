@@ -9,27 +9,35 @@
 <% @purchases = Purchase.all %>
 <% @subs = Subscriber.all %>
 
+<div class="container">
 <h2>Summary of saved items</h2>
 <% @users.each do |user| %>
   <%itemsList = user.items%>
+    <div class="container">
     <h3>Username : <%= user.name %></h2>
     <ol>
     <%itemsList.each do |item| %>
       <li><%= item.name %></li>
     <%  end %>
     </ol>
+    </div>
 <%  end %>
+</div>
 
-
+<div class="container">
 <h2>Purchased items</h2>
 <ol>
 <% @purchases.each do |purchase| %>
     <% user = User.find_by id: purchase.user_id %>
     <% item = Item.find_by id: purchase.item_id %>
+    <div class="container">
     <li>User: <%= user.name %>  <br/> Item: <%= item.name %> <br/> Colour: <%=purchase.colour %> <br/> Size: <%=purchase.size %> <br/> Quantity: <%=purchase.quantity %></li>
+    </div>
 <% end %>
 </ol>
- 
+</div>
+
+<div class="container">
 <h2>Overall ratings</h2>
 <%
   ratingTotal = 0
@@ -60,7 +68,9 @@
     <% average = (ratingTotal/totalUsersWithRating.to_f) %>
     <h3>Average score out of 4 is <%= average %> from <%=totalUsersWithRating%> Users </h3>
 <% end %>
+</div>
 
+<div class="container">
 <h2>Newsletter subscriptions</h2>
 <ol>
 <% @subs.each do |subscriptions| %>
@@ -70,3 +80,4 @@
 
 <% else to_main() %>
 <% end %>
+</div>
