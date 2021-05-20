@@ -86,3 +86,6 @@ ActiveRecord::Base.connection.execute("INSERT INTO 'carts' (item_id, user_id, si
 
 ActiveRecord::Base.connection.execute("DELETE from 'ratings'")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'ratings'")
+
+ActiveRecord::Base.connection.execute("DELETE from 'purchases'")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'purchases'")

@@ -29,19 +29,16 @@ Rails.application.routes.draw do
   get 'newsletter_signup', to: 'subscribers#new'
   post 'newsletter_signup', to: 'subscribers#create'
   
-  post :to_productdetails, to: 'main#to_productdetails'
-  post :to_saved, to: 'main#to_saved'
-  post :removed_saved, to: 'main#removed_saved'
-  post :toggle_saved, to: 'main#toggle_saved'
-  
-  post :add_to, to: 'carts#add_to'
-  post :add_to_with_param, to: 'carts#add_to_with_param'
-  post :remove_items, to: 'carts#remove_items'
-  post :remove_item, to: 'carts#remove_item'
-  
-  post :toggle_subscriber, to: 'subscribers#toggle_subscriber'
-
-  post :add_rating, to: 'users#add_rating'
+  post 'to_productdetails', to: 'main#to_productdetails'
+  post 'to_saved', to: 'main#to_saved'
+  post 'removed_saved', to: 'main#removed_saved'
+  post 'toggle_saved', to: 'main#toggle_saved'
+  post 'add_to', to: 'carts#add_to'
+  post 'add_to_with_param', to: 'carts#add_to_with_param'
+  post 'remove_item', to: 'carts#remove_item'
+  post 'remove_items', to: 'carts#remove_items'
+  post 'toggle_subscriber', to: 'subscribers#toggle_subscriber'
+  post 'add_rating', to: 'users#add_rating'
   
   get '/auth/callback'
   post '/auth/callback'

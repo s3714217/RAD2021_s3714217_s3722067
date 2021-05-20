@@ -25,7 +25,6 @@ class CartsController < ApplicationController
     redirect_to main_checkout_path
   end  
   
-  # POST /add_to
   def add_to
     if(!session[:current_user_id])
       redirect_to login_login_path, notice: cart_params

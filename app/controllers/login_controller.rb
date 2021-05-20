@@ -102,8 +102,6 @@ class LoginController < ApplicationController
         end 
         
       end
-    # u = User.new(name: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:repassword])
-    # u.save
      User.update(session[:current_user_id], email: params[:email], password: params[:password], password_confirmation: params[:repassword])
      redirect_to main_main_path
     end
