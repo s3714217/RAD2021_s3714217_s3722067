@@ -40,7 +40,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('User.count', -1) do
       delete user_url(@user)
     end
-
     assert_redirected_to users_url
   end
+  
+  test "should add rating to user" do
+    assert_not @user.has_rating?
+    post add_rating_path, params: {userId: @user.id, rating: "Amazing"}
+    @user = User.find_by id: @user.id
+    assert @user.has_rating?
+  end
+  
 end

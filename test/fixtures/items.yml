@@ -7,6 +7,7 @@ one:
   price: 15
   itemdescription: "Smart Casual"
   asseturl: "asseturl"
+  popularity: 0
 
 two:
   id: 2
@@ -15,3 +16,4 @@ two:
   price: 1.5
   itemdescription: "New and Hip"
   asseturl: "asseturl"
+  popularity: 0

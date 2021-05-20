@@ -4,7 +4,7 @@ one:
   id: 1
   name: user1
   email: user1@gmail.com
-  password_digest: "password"
+  password_digest: <%= User.digest("password") %>
 
 two:
   id: 2
@@ -16,4 +16,4 @@ three:
   id: 3
   name: user3
   email: user3@gmail.com
-  password_digest: "password"
+  password_digest: <%= User.digest("password") %>
