@@ -1,45 +1,37 @@
 Rails.application.routes.draw do
   get 'login/forgot_pwd'
-
-  get '/admin', to: 'admin#admin'
-  
-  get 'admin/admin'
   get 'login/update_details'
-
-  get 'main/profile'
-
-  get 'main/all_collection'
-
   get 'login/logout'
-  get 'main/rating'
-
-  get 'main/collection'
-
-  get 'main/savedlist'
   get 'login/login' => 'login#login'
   get 'login/sign_up' => 'login#sign_up'
   get 'login/update_details' => 'login#update_details'
-  
   post 'login/sign_up' => 'login#sign_up'
   post 'login/login' => 'login#login'
   post 'login/update_details' => 'login#update_details'
-  
+  get 'login/forgot_pwd', to: 'login#forgot_pwd'
+  post 'login/forgot_pwd', to: 'login#forgot_pwd'
+
+  get '/admin', to: 'admin#admin'
+  get 'admin/admin'
+
+  get 'main/main' => 'main#main'
+  post 'main/main' => 'main#main'
+  get 'main/about'
+  get 'main/contact'
+  get 'main/productdetails'
+  get 'main/checkout'
+  get 'main/profile'
+  get 'main/all_collection'
+  get 'main/rating'
+  get 'main/collection'
+  get 'main/savedlist'
   post 'main/all_collection' => 'main#all_collection'
   
-  resources :items
-  resources :users do
-    member do
-      post :remove_items, to: 'users#remove_items'
-    end
-  end
-  resources :subscribers
-  resources :carts
+  get 'newsletter_signup', to: 'subscribers#new'
+  post 'newsletter_signup', to: 'subscribers#create'
   
   post :remove_items, to: 'carts#remove_items'
   post :remove_item, to: 'carts#remove_item'
-
-  post :filter_saved, to: 'main#filter_saved'
-  post :searched, to: 'main#searched'
   
   post :toggle_subscriber, to: 'subscribers#toggle_subscriber'
   post :toggle_saved, to: 'main#toggle_saved'
@@ -55,24 +47,18 @@ Rails.application.routes.draw do
   
   post :add_to_with_param, to: 'carts#add_to_with_param'
   
-  get 'main/main' => 'main#main'
-  post 'main/main' => 'main#main'
-
-  get 'main/about'
-
-  get 'main/contact'
-  
-  get 'main/productdetails'
-  
-  get 'main/checkout'
-  
-  get 'newsletter_signup', to: 'subscribers#new'
-  post 'newsletter_signup', to: 'subscribers#create'
-  
-  get 'login/forgot_pwd', to: 'login#forgot_pwd'
-  post 'login/forgot_pwd', to: 'login#forgot_pwd'
   
   get '/auth/callback'
   post '/auth/callback'
+  
+  resources :items
+  resources :users do
+    member do
+      post :remove_items, to: 'users#remove_items'
+    end
+  end
+  resources :subscribers
+  resources :carts
+  
   root 'main#main'
 end
