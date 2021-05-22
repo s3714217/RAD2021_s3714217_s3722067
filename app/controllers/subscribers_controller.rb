@@ -23,6 +23,7 @@ class SubscribersController < ApplicationController
 
   # POST /subscribers
   # POST /subscribers.json
+  #Create an subscriber and send user an email
   def create
     if Subscriber.where(email: params["subscriber"]["email"]).empty?
       @subscriber = Subscriber.new(subscriber_params)
@@ -84,6 +85,7 @@ class SubscribersController < ApplicationController
     end
   end
   
+  #Toggle subscriber status
   def toggle_subscriber
     user = User.find_by id: session[:current_user_id]
     subscriber = Subscriber.where(email: user.email)

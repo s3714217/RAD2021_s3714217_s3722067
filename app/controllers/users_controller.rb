@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :remove_items]
   
+  #Add rating to user
   def add_rating
     rating = Rating.new(user_id: params[:userId], ratingscore: params[:rating] )
     rating.save()
