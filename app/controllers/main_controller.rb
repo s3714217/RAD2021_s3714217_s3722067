@@ -87,7 +87,11 @@ class MainController < ApplicationController
       item.popularity =  item.popularity - 1
       item.save
     end
-    redirect_to request.referrer
+    if request
+      if request.referrer
+         redirect_to request.referrer
+      end
+    end
   end
   
   def to_saved
@@ -125,7 +129,9 @@ class MainController < ApplicationController
       end
     end
     if request
-      redirect_to request.referrer
+      if request.referrer
+         redirect_to request.referrer
+      end
     end
   end
   

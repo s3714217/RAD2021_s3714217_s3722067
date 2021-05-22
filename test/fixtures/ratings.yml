@@ -1,7 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ratingscore: MyString
-
-two:
-  ratingscore: MyString
+  id: 1
+  ratingscore: "Amazing"
