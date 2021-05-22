@@ -86,7 +86,11 @@ class LoginController < ApplicationController
     @notification = ""
     
     if !@user.authenticate(params[:oldpassword])
-      @notification =  "Wrong Password"
+      if params[:oldpassword]
+        @notification =  "Wrong Password"
+      else
+        @notification = ""
+      end
       return
     end 
         
