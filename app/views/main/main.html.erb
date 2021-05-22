@@ -45,6 +45,7 @@
                   <div class="wrapper">
                   <%= form_tag action: 'main' do %> 
                   <%= hidden_field_tag'selected_item', item.id %>
+                  <%= submit_tag("Save Item", :class => 'btn btn-light' )%> 
                   <% end %> 
                   </div>
                 </div>

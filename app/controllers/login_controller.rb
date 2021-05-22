@@ -1,23 +1,22 @@
 class LoginController < ApplicationController
-  
-  def twitter_auth
-    @user = User.find_or_create_from_auth_hash(auth_hash)
-    session[:current_user_id] = @user.id
-    redirect_to root_path
-  end
-  
-  def auth_hash
-    request.env['omniauth.auth']
-  end
-  
   def login
     
     token = request.url.split(".").last
+    
     if token.include?("token:")
-      token_sign_in(token)
+      token = token.split("token:").last
+      if AccessToken.find_by_token(token) != nil
+        session[:current_user_id] = AccessToken.find_by_token(token).user_id
+        AccessToken.find_by_token(token).destroy
+        puts AccessToken.all.length
+        redirect_to main_main_path
+      else
+        @notification = "Your access URL has expired"
+      end
+      
+      return
     end
     
-  
     @notification = ""
     if params[:username] != nil
         @current_user = User.find_by(name:params[:username]).try(:authenticate, params[:password])
@@ -44,7 +43,7 @@ class LoginController < ApplicationController
           # Uncomment if local saved if should be deleted after login
           # cookies.delete :vistorsavedlist
         end
-        session[:twitter_logged_in] = 0
+        
         redirect_to main_main_path
     end
   end
@@ -74,7 +73,6 @@ class LoginController < ApplicationController
      u = User.new(name: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:repassword])
      u.save
      session[:current_user_id] = u.id
-     session[:twitter_logged_in] = 0
      redirect_to main_main_path
     end
   end
@@ -111,7 +109,6 @@ class LoginController < ApplicationController
   
   def logout
     session[:current_user_id] = nil
-    session[:twitter_logged_in] = 0
     redirect_to main_main_path
   end
   
@@ -142,17 +139,5 @@ class LoginController < ApplicationController
     t = AccessToken.new(email: email,user_id: user.id ,token: token )
     t.save
     UserNewsletterMailer.send_recover_email(token_url, email).deliver_now
-  end
-  
-  def token_sign_in(token)
-    token = token.split("token:").last
-      if AccessToken.find_by_token(token) != nil
-        session[:current_user_id] = AccessToken.find_by_token(token).user_id
-        AccessToken.find_by_token(token).destroy
-        puts AccessToken.all.length
-        redirect_to main_main_path
-      else
-        @notification = "Your access URL has expired"
-      end
   end
 end
