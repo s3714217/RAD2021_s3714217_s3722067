@@ -31,9 +31,8 @@ class CartsController < ApplicationController
   def add_to
     if(!session[:current_user_id])
       redirect_to login_login_path, notice: cart_params
-    else
-      add_to_with_param(cart_params)
     end
+    add_to_with_param(cart_params)
   end
   
   #Add an item into the users cart with param

@@ -29,6 +29,10 @@
             <% end %>
             
             <div class="wrapper" >
+               <%= button_to "Sign in with Twitter", "https://#{request.env['HTTP_HOST']}" +"/auth/twitter", method: :post, class: "btn btn-primary"%>
+            </div>
+            
+            <div class="wrapper" >
             <a class="form-group" href='/login/forgot_pwd' >Forgot Password</a>
             </div>
             

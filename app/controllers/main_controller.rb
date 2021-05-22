@@ -14,7 +14,9 @@ class MainController < ApplicationController
        end
      end
     else
+      if @current_user.items != nil
              @savedlist = @current_user.items
+      end
     end
     
     @selected_item = params[:selected_item]
@@ -86,9 +88,7 @@ class MainController < ApplicationController
       item.popularity =  item.popularity - 1
       item.save
     end
-    if request.referrer
-     redirect_to request.referrer
-    end
+    redirect_to request.referrer
   end
   
   def to_saved
@@ -127,9 +127,7 @@ class MainController < ApplicationController
       end
     end
     if request
-      if request.referrer
-        redirect_to request.referrer
-      end
+      redirect_to request.referrer
     end
   end
   

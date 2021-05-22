@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: "user1@gmail.com"
+  email: MyText
 
 two:
-  email: "user2@gmail.com"
+  email: MyText

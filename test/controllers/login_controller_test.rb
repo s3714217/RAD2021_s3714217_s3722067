@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class LoginControllerTest < ActionDispatch::IntegrationTest
-  test "should get login" do
-    get login_login_url
+  test "should get update_details" do
+    get login_update_details_url
     assert_response :success
   end
 

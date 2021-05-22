@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class CartTest < ActiveSupport::TestCase
+
+  # test "the truth" do
+  #   assert true
+  # end
+
   
   test "check cart item fields and object are valid" do
     @Cart = Cart.find_by id: 1

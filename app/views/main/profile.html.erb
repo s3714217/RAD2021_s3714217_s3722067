@@ -8,9 +8,13 @@
 </h1>
     </br>
     <%= button_to "&#128337 Pending Orders".html_safe, main_checkout_path, method: :get,  class: "btn btn-primary btn-lg btn-block" %>
-    </br> 
-    <%= button_to '&#9919 Update login details'.html_safe, login_update_details_path, method: :get,  class: "btn btn-primary btn-lg btn-block" %>
-    </br>      
+    
+     <% if session[:twitter_logged_in] == 0%>
+        </br> 
+            <%= button_to '&#9919 Update login details'.html_safe, login_update_details_path, method: :get,  class: "btn btn-primary btn-lg btn-block" %>
+        </br> 
+     <% end %>
+         
     
     <p id="notice"><%= notice %></p>
     <%= form_with url: toggle_subscriber_path() do |form| %>

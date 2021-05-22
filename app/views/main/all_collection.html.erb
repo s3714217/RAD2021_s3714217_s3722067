@@ -166,7 +166,6 @@
                    <h4 class="card-title"><%= item.name%></h4>
                    <%= form_tag action: 'all_collection' do %> 
                    <%= hidden_field_tag'selected_item',item.id%>
-                   <%= submit_tag("Save Item", :class => 'btn btn-light' )%> 
                    <% end %> 
                    </div>
             <%end%>

@@ -91,6 +91,8 @@ u3.save
 u4 = User.new(name: "admin", email: "danny_le@y7mail.com", password: "Rails2021", password_confirmation: "Rails2021")
 u4.save
 
+ActiveRecord::Base.connection.execute("DELETE from 'items_users'")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'items_users'")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (1,1)")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (3,1)")
 ActiveRecord::Base.connection.execute("INSERT INTO 'items_users' (item_id, user_id) VALUES (7,1)")

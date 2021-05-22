@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class PurchaseTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
   
   test "check purchase fields and object are valid" do
     @purchase = Purchase.find_by id: 1
@@ -18,5 +21,5 @@ class PurchaseTest < ActiveSupport::TestCase
     @purchase = Purchase.new( item_id: 0, user_id: 1, size: 'Medium', colour: 'RED', quantity: 1)
     assert_not @purchase.valid?
   end
-  
+
 end
