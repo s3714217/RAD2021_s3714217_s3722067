@@ -148,6 +148,7 @@ class LoginController < ApplicationController
     t.save
     UserNewsletterMailer.send_recover_email(token_url, email).deliver_now
   end
+end
   
   def token_sign_in(token)
     token = token.split("token:").last
