@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   include CartsHelper
   
+  #Remove all iteams in the users cart
   def remove_items
     @cart = Cart.where(:user_id => params[:userId])
     @cart.each do |cartitem| 
@@ -16,6 +17,7 @@ class CartsController < ApplicationController
     end
   end  
   
+  #Remove an iteam in the users cart
   def remove_item
     cartItem = Cart.find_by id: params[:cartitemId]
     cartItem.destroy
@@ -25,6 +27,7 @@ class CartsController < ApplicationController
     redirect_to main_checkout_path
   end  
   
+  #Add an item into the users cart
   def add_to
     if(!session[:current_user_id])
       redirect_to login_login_path, notice: cart_params
@@ -33,6 +36,7 @@ class CartsController < ApplicationController
     end
   end
   
+  #Add an item into the users cart with param
   def add_to_with_param(cart_params)
     Cart.new
     @cart = Cart.new(cart_params)

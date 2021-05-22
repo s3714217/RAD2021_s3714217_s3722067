@@ -77,6 +77,7 @@ class LoginController < ApplicationController
     end
   end
   
+  #Update user's details 
   def update_details
     @all_user = User.all
     @user = User.find_by id: session[:current_user_id]

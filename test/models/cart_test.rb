@@ -9,7 +9,7 @@ class CartTest < ActiveSupport::TestCase
     assert @Cart.user_id  == 1
   end
   
-  test "check invvalid cart item with user that does not exist" do
+  test "check invalid cart item with user that does not exist" do
     @Cart = Cart.new( item_id: 1, user_id: 0, size: 'Medium', colour: 'RED', quantity: 1)
     assert_not @Cart.valid?
   end
