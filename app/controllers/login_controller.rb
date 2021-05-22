@@ -79,18 +79,13 @@ class LoginController < ApplicationController
     end
   end
   
-  #Update user's details 
   def update_details
     @all_user = User.all
     @user = User.find_by id: session[:current_user_id]
     @notification = ""
     
     if !@user.authenticate(params[:oldpassword])
-      if params[:oldpassword]
-        @notification =  "Wrong Password"
-      else
-        @notification = ""
-      end
+      @notification =  "Wrong Password"
       return
     end 
         
