@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'login/forgot'
+  get 'login/forgot_pwd'
   get 'login/update_details'
   get 'login/logout'
   get 'login/login' => 'login#login'
