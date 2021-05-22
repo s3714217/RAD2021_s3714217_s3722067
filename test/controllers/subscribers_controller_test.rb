@@ -1,8 +1,9 @@
+
 require 'test_helper'
 
 class SubscribersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @subscriber = subscribers(:one)
+    @subscriber = subscribers(:two)
   end
 
   test "should get index" do
@@ -17,10 +18,8 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create subscriber" do
     assert_difference('Subscriber.count') do
-      post subscribers_url, params: { subscriber: { email: @subscriber.email } }
+      post subscribers_url, params: { subscriber: { email: "email@something.com" } }
     end
-
-    assert_redirected_to subscriber_url(Subscriber.last)
   end
 
   test "should show subscriber" do
@@ -42,7 +41,16 @@ class SubscribersControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Subscriber.count', -1) do
       delete subscriber_url(@subscriber)
     end
-
-    assert_redirected_to subscribers_url
+    assert_redirected_to main_profile_url
   end
+  
+  test "should toggle_subscriber" do
+    post login_login_path, params: {username: "user3", password: "password"}
+    subscriber = Subscriber.where(email: "user3@gmail.com")
+    assert subscriber.empty?
+    post add_rating_path
+    subscriber = Subscriber.where(email: "user3@gmail.com")
+    assert subscriber
+  end
+  
 end
