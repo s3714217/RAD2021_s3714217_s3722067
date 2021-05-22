@@ -4,6 +4,10 @@ class MainController < ApplicationController
     @current_user = User.find_by_id(session[:current_user_id])
     @items = Item.order('popularity DESC')
     
+    if @current_user == nil
+      session[:current_user_id] = nil
+    end
+    
     @savedlist = []
     if session[:current_user_id] == nil 
       if cookies[:vistorsavedlist] != nil
