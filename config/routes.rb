@@ -40,8 +40,7 @@ Rails.application.routes.draw do
   post 'toggle_subscriber', to: 'subscribers#toggle_subscriber'
   post 'add_rating', to: 'users#add_rating'
   
-  get '/auth/callback'
-  post '/auth/callback'
+  get '/auth/twitter/callback', to: 'omniauth_callbacks#twitter'
   
   resources :items
   resources :users

@@ -1,19 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
-  name: "item1"
-  category: "Men"
-  price: 15
-  itemdescription: "Smart Casual"
-  asseturl: "asseturl"
-  popularity: 0
+  name: MyString
+  category: MyString
+  price: 1.5
+  itemdescription: MyString
+  asseturl: MyString
 
 two:
-  id: 2
-  name: "item2"
-  category: "New"
+  name: MyString
+  category: MyString
   price: 1.5
-  itemdescription: "New and Hip"
-  asseturl: "asseturl"
-  popularity: 0
+  itemdescription: MyString
+  asseturl: MyString
