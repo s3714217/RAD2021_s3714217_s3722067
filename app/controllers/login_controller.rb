@@ -79,18 +79,13 @@ class LoginController < ApplicationController
     end
   end
   
-  #Update user's details 
   def update_details
     @all_user = User.all
     @user = User.find_by id: session[:current_user_id]
     @notification = ""
     
     if !@user.authenticate(params[:oldpassword])
-      if params[:oldpassword]
-        @notification =  "Wrong Password"
-      else
-        @notification = ""
-      end
+      @notification =  "Wrong Password"
       return
     end 
         
@@ -148,7 +143,6 @@ class LoginController < ApplicationController
     t.save
     UserNewsletterMailer.send_recover_email(token_url, email).deliver_now
   end
-end
   
   def token_sign_in(token)
     token = token.split("token:").last
