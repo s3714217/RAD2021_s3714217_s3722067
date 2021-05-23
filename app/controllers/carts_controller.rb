@@ -33,6 +33,7 @@ class CartsController < ApplicationController
       redirect_to login_login_path, notice: cart_params
     else
       add_to_with_param(cart_params)
+      redirect_to main_checkout_path
     end
   end
   
@@ -44,7 +45,6 @@ class CartsController < ApplicationController
     item.popularity = item.popularity + 1
     item.save
     @cart.save
-    redirect_to main_checkout_path
   end
   
   private

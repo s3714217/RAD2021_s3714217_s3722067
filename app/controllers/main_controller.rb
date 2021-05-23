@@ -281,10 +281,10 @@ class MainController < ApplicationController
     filtered = false
     
     collection.each do |t|
-      if params[t] != nil
+      if params[:radio] != nil
        temp.each do |i|
-         puts(i.size, i.size.include?(params[t]))
-         if i.size.include?(params[t])
+         puts(i.size, i.size.include?(params[:radio]))
+         if i.size.include?(params[:radio])
            if !display_items.include?(i) 
              display_items.append(i)
              filtered = true
