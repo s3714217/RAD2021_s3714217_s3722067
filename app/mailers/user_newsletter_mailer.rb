@@ -16,8 +16,6 @@ class UserNewsletterMailer < ApplicationMailer
   end
   
   def send_recover_email(token_url, email, pwd)
-    puts "password"
-    puts pwd
     mail( :to => email,
     :subject => 'Forgot Password',
     :body => "Your temporary access url is #{token_url} and your temporary password is: #{pwd} ")
