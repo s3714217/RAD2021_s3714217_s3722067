@@ -21,14 +21,19 @@ ActiveRecord::Base.connection.execute("DELETE from ratings")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'ratings'")
 ActiveRecord::Base.connection.execute("DELETE from purchases")
 ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'purchases'")
+ActiveRecord::Base.connection.execute("DELETE from subscribers")
+ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = 'subscribers'")
 
 # pg reset
-# TRUNCATE TABLE items RESTART IDENTITY;
-# TRUNCATE TABLE users RESTART IDENTITY;
-# TRUNCATE TABLE items_users RESTART IDENTITY;
-# TRUNCATE TABLE carts RESTART IDENTITY;
-# TRUNCATE TABLE ratings RESTART IDENTITY;
-# TRUNCATE TABLE purchases RESTART IDENTITY;
+#Item.destroy_all
+#User.destroy_all
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE items RESTART IDENTITY;")
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE users RESTART IDENTITY;")
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE items_users RESTART IDENTITY;")
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE carts RESTART IDENTITY;")
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE ratings RESTART IDENTITY;")
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE subscribers RESTART IDENTITY;")
+#ActiveRecord::Base.connection.execute("TRUNCATE TABLE purchases RESTART IDENTITY;")
 
 
 Item.new
