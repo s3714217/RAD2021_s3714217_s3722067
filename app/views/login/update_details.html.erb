@@ -12,8 +12,8 @@
         <div class="container" >
                   <%= form_tag action: 'update_details' do %> 
                   <div style="text-align:center" class="form-group">Old Password: <input  style="text-align:center" class="form-control" type="text" name="oldpassword" required></div>
-                  <div style="text-align:center" class="form-group">Password: <input  style="text-align:center" class="form-control" type="password" name="password" placeholder="Enter at least 8 characters" pattern="[A-Za-z0-9]{8,10}"required></div>
-                  <div style="text-align:center" class="form-group">Confirm Password: <input  style="text-align:center" class="form-control" type="password"  name="repassword" placeholder="Enter at least 8 characters" pattern="[A-Za-z0-9]{8,10}"required></div>
+                  <div style="text-align:center" class="form-group">Password: <input  style="text-align:center" class="form-control" type="password" name="password" placeholder="Enter at least 8 characters" pattern="[A-Za-z0-9]{8,20}"required></div>
+                  <div style="text-align:center" class="form-group">Confirm Password: <input  style="text-align:center" class="form-control" type="password"  name="repassword" placeholder="Enter at least 8 characters" pattern="[A-Za-z0-9]{8,20}"required></div>
                   <div style="text-align:center" class="form-group">Email:  <input  style="text-align:center" class="form-control" type="email" name="email" placeholder="example@gmail.com" pattern="{1,30}"required></div>
                   <div style="text-align:center"><input type="submit" value="Update User" name="update"></div>
                   <% end %>
