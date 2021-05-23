@@ -155,7 +155,6 @@ class MainController < ApplicationController
   if request.url.split("?").length > 1
     cate = request.url.split("?").last
     params[:selected_cate] = cate
-    puts cate
   end
    process_selected_category(params[:selected_cate])
     if params[:search_text] != nil
@@ -283,7 +282,6 @@ class MainController < ApplicationController
     collection.each do |t|
       if params[:radio] != nil
        temp.each do |i|
-         puts(i.size, i.size.include?(params[:radio]))
          if i.size.include?(params[:radio])
            if !display_items.include?(i) 
              display_items.append(i)
@@ -308,7 +306,6 @@ class MainController < ApplicationController
     collection.each do |t|
       if params[t] != nil
        temp.each do |i|
-         puts(i.tag, i.tag.include?(params[t]))
          if i.tag.include?(params[t])
            if !display_items.include?(i) 
              display_items.append(i)
