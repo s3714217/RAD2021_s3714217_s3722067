@@ -139,47 +139,47 @@ Build log:
 
 6. RAD2021_s3714217_s3722067 / https://github.com/s3714217/RAD2021_s3714217_s3722067
 
-7. Timesheet
+7. Timesheet link: https://docs.google.com/spreadsheets/d/12sSdjbYibodtWoaXP_a23hSNk2ugIjMiclm6Y9x42i4/edit?usp=sharing
 
 Thien Nguyen 			
-Date	Time	Duration	Activity
-April 20th	13:00 - 16:00	3 hours	Set up project 
-April 20th	17:00 - 19:00	2 hours	Add main html with top banner, popular and collection summary
-April 30th	12:00 - 14:00	2 hours	Add bootstrap CSS and header layout with redirecting
-May 7th	13:00 - 15:00	2 hours	Add Collection page with 4 main category
-May 7th	15:00 - 18:00	3 hours	Add Filter
-May 7th	18:00 - 19:00	1 hour	Add Search Bar
-May 10th	10:00 - 13:00	3 hours	Add DIY Login/Logout with input validation
-May 10th	13:00 - 15:00	2 hours	Add DIY Sign up with with input validation
-May 13th	10:00 - 13:00	3 hours	Setup Twitter API
-May 14th	13:00 - 15:00	2 hours	Add Twitter credentials
-May 14th	15:00 - 21:00	6 hours	Add Login with Twitter
-May 17th	12:00 - 13:00	1 hours	Add AccessToken models
-May 17th	14:00 - 17:00	3 hours	Add Forgot Password
-May 21st	19:00 - 21:00	2 hours	Debugging
-May 21st	21:00 - 22:00	1 hours	Refractoring and Clean up code
-May 22nd	10:00 - 11:00	1 hours	Add comment
-May 23rd	15:00 - 16:00	1 hours	Add more test cases
-May 23rd	16:00 - 17:00	1 hours	Finalize submission document
+- Date	Time	Duration	Activity
+- April 20th	13:00 - 16:00	3 hours	Set up project 
+- April 20th	17:00 - 19:00	2 hours	Add main html with top banner, popular and collection summary
+- April 30th	12:00 - 14:00	2 hours	Add bootstrap CSS and header layout with redirecting
+- May 7th	13:00 - 15:00	2 hours	Add Collection page with 4 main category
+- May 7th	15:00 - 18:00	3 hours	Add Filter
+- May 7th	18:00 - 19:00	1 hour	Add Search Bar
+- May 10th	10:00 - 13:00	3 hours	Add DIY Login/Logout with input validation
+- May 10th	13:00 - 15:00	2 hours	Add DIY Sign up with with input validation
+- May 13th	10:00 - 13:00	3 hours	Setup Twitter API
+- May 14th	13:00 - 15:00	2 hours	Add Twitter credentials
+- May 14th	15:00 - 21:00	6 hours	Add Login with Twitter
+- May 17th	12:00 - 13:00	1 hours	Add AccessToken models
+- May 17th	14:00 - 17:00	3 hours	Add Forgot Password
+- May 21st	19:00 - 21:00	2 hours	Debugging
+- May 21st	21:00 - 22:00	1 hours	Refractoring and Clean up code
+- May 22nd	10:00 - 11:00	1 hours	Add comment
+- May 23rd	15:00 - 16:00	1 hours	Add more test cases
+- May 23rd	16:00 - 17:00	1 hours	Finalize submission document
 
 Danny Le			
-Date	Time	Duration	Activity
-April 25th	12:00-13:00	1 hour	Add scaffolding for items and users
-April 29th	13:00-15:00	2 hours	Add scaffolding for subscriber and edit users and add seed file
-May 1st	9:00-14:00	5 hours	Added newsletter functionality (Wip)
-May 4th	12:00-13:00	1 hour	Add validation with newsletter
-May 5th	13:00-15:00	2 hours	Add checkout page in progress
-May 6th	13:00-14:30	1.5 hour	Finished basic checkout page
-May 7th	13:00-18:00	5 hours	Add product details page and cart functionality
-May 7th	20:00-24:00	4 hours	Add more checkout and subcription messages
-May 8th	21:00-02:00	3 hours	Add saved list with product details
-May 9th	12:00-17:30	5.5 hours	Add rating for new user, colour and size in options, add footer, change item schema
-May 10th	21:00-24:00	3 hours	Add testing collections page to add items
-May 11th	12:00-14:30	2.5 hours	Add simple search, persistence and remove hardedcoded user 
-May 12th	15:00-18:00	3 hours	Add favourites to checkout and favourites to collection and saved list
-May 13th	12:30-15:00	2.5 hourss	Fixed saved-list merge error and integrate favourites tag
-May 14th	12:00-14:00	2 hours	Add profile page
-May 17th	12:30-15:00	2.5 hours	Add admin page and production config
-May 20th	12:30-16:00	5.5 hours	Add tests to models and controller and refactoring
-May 22nd	22:00-02:00	4 hours	Add comments and rework seed file
-May 23rd	08:00-17:00	9 hours	
+- Date	Time	Duration	Activity
+- April 25th	12:00-13:00	1 hour	Add scaffolding for items and users
+- April 29th	13:00-15:00	2 hours	Add scaffolding for subscriber and edit users and add seed file
+- May 1st	9:00-14:00	5 hours	Added newsletter functionality (Wip)
+- May 4th	12:00-13:00	1 hour	Add validation with newsletter
+- May 5th	13:00-15:00	2 hours	Add checkout page in progress
+- May 6th	13:00-14:30	1.5 hour	Finished basic checkout page
+- May 7th	13:00-18:00	5 hours	Add product details page and cart functionality
+- May 7th	20:00-24:00	4 hours	Add more checkout and subcription messages
+- May 8th	21:00-02:00	3 hours	Add saved list with product details
+- May 9th	12:00-17:30	5.5 hours	Add rating for new user, colour and size in options, add footer, change item schema
+- May 10th	21:00-24:00	3 hours	Add testing collections page to add items
+- May 11th	12:00-14:30	2.5 hours	Add simple search, persistence and remove hardedcoded user 
+- May 12th	15:00-18:00	3 hours	Add favourites to checkout and favourites to collection and saved list
+- May 13th	12:30-15:00	2.5 hourss	Fixed saved-list merge error and integrate favourites tag
+- May 14th	12:00-14:00	2 hours	Add profile page
+- May 17th	12:30-15:00	2.5 hours	Add admin page and production config
+- May 20th	12:30-16:00	5.5 hours	Add tests to models and controller and refactoring
+- May 22nd	22:00-02:00	4 hours	Add comments and rework seed file
+- May 23rd	08:00-17:00	9 hours	
