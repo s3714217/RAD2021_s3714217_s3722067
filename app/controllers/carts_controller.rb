@@ -40,6 +40,7 @@ class CartsController < ApplicationController
     item.popularity = item.popularity + 1
     item.save
     @cart.save
+    redirect_to main_checkout_path
   end
   
   private

@@ -124,7 +124,10 @@ class MainController < ApplicationController
           item.save
           cookies[:vistorsavedlist] = cookies[:vistorsavedlist]+","+itemId
         end
-      else    
+      else
+        item = Item.find_by id: itemId
+        item.popularity = item.popularity + 1
+        item.save
         cookies[:vistorsavedlist] = itemId
       end
     end
