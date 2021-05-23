@@ -33,7 +33,7 @@ class MainControllerTest < ActionDispatch::IntegrationTest
     @item = Item.find_by id: 1
     post login_login_path, params: {username: "user1", password: "password"}
     post toggle_saved_path, params: {itemId: "1"}
-   # assert @user.items.include?(@item) 
+    assert @user.items.include?(@item) 
   end
   
   test "should toggle saved item off" do
