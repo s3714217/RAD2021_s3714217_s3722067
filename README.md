@@ -6,7 +6,7 @@
 2. Distribution is 50:50
 3. Highest level attempted is 80+ (1 90+ task)
 4. Heroku URL: https://agile-crag-62155.herokuapp.com/
-Build log:
+- Build log:
 -----> Building on the Heroku-20 stack
 -----> Using buildpack: heroku/ruby
 -----> Ruby app detected
