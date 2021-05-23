@@ -23,26 +23,6 @@
    
    
    
-   $('.size_all').click(function() {
-      if(this.checked) {
-          $('.size').each(function() {
-              this.checked = false;                        
-          });
-      } else {
-         $('.size_all').each(function() {
-              this.checked = false;                        
-          });
-      } 
-   });
- 
- 
-   $('.size').click(function() {
-      if(this.checked) {
-          $('.size_all').each(function() {
-              this.checked = false;                        
-          });
-      }
-   });
    
    $('.colour_all').click(function() {
       if(this.checked) {
@@ -116,9 +96,9 @@
     
     <div>
     <di>Size</di>
-    <%= label_tag("All", "All") %> <%= check_box_tag "All", "All", true, {:class => "size_all"}%>
+    
     <% @all_size.each do |t| %>
-    <%= label_tag(t, t) %> <%= check_box_tag t, t, false,{:class => "size"}%>
+    <%= label_tag(t, t) %> <%= radio_button_tag "radio", t, true,{:type => "radio"}%>
     <% end%>
     </div>
     
