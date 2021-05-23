@@ -1,0 +1,171 @@
+
+<body>
+   
+   
+   <p><h1 class="collection_title" style="text-align:center">New & Trending</h1></p>
+   
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% @active = true %>
+        <% @items.each do |item| %>
+          
+          <%
+          
+          str = item.category
+          str = str.split(",")
+           if str.include? "New" and !@savedlist.include?(item)%>
+           <% if @active == false
+                @active_item = ""
+           end%>
+           <% if @active == true
+                 @active_item = "active"
+                 @active = false
+            end %>
+            
+              <div class="carousel-item <%=@active_item%>">
+                <div class=middle-align-image display= "d-block w-100" style="display:block;margin-left:auto;margin-right:auto;text-align: center;">
+                  <div class=button-container>
+               	    <%= form_with url: to_productdetails_path() do |form| %>
+                    <%= form.hidden_field :itemId, value:  item.id %>
+                    <%= image_submit_tag( item.asseturl, width: 300, height: 300, display: "d-block w-100")  %>
+                    <% end %> 
+        
+                    <% if is_in_saved_list( item.id) %>
+                    <div class='saved'> SAVED </div>
+                    <% end %>
+              
+                    <%= form_with url: toggle_saved_path() do |form| %>
+                    <%= form.hidden_field :itemId, value:  item.id %>
+                    <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+                    <% end %> 
+                  </div>
+                </div>
+                <div class="card-body">
+                <h4 class="card-title"><%= item.name%></h4>
+                  <div class="wrapper">
+                  <%= form_tag action: 'main' do %> 
+                  <%= hidden_field_tag'selected_item', item.id %>
+                  <% end %> 
+                  </div>
+                </div>
+              </div>
+            
+          <% end %>
+        <% end %>
+       
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+  
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  
+    <p><h1 class="collection_title" style="text-align:center">Popular</h1></p>
+   <div id="carouselControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <% @active = true %>
+        <% @items.each do |item| %>
+          
+          <% if item.popularity > 0 %>
+           <% if @active == false
+                @active_item = ""
+           end%>
+           <% if @active == true
+                 @active_item = "active"
+                 @active = false
+            end %>
+              <div class="carousel-item <%=@active_item%>">
+                   <div class=middle-align-image display= "d-block w-100" style="display:block;margin-left:auto;margin-right:auto;text-align: center;">
+                  <div class=button-container>
+               	    <%= form_with url: to_productdetails_path() do |form| %>
+                    <%= form.hidden_field :itemId, value:  item.id %>
+                    <%= image_submit_tag( item.asseturl, width: 300, height: 400, display: "d-block w-100")  %>
+                    <% end %> 
+        
+                    <% if is_in_saved_list( item.id) %>
+                    <div class='saved'> SAVED </div>
+                    <% end %>
+              
+                    <%= form_with url: toggle_saved_path() do |form| %>
+                    <%= form.hidden_field :itemId, value:  item.id %>
+                    <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+                    <% end %> 
+                  </div>
+                </div>
+                <div class="card-body">
+                <h4 class="card-title"><%= item.name%></h4>
+               
+                </div>
+              </div>
+            
+          <% end %>
+        <% end %>
+       
+      </div>
+      <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+  
+      <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  
+    <p><h1 class="collection_title" style="text-align:center">Collection </h1> </p>
+    <p style="text-align:center"><a href=<%=main_all_collection_path%>>View All</a></p>
+    
+   <div class="collection_wrapper">
+    <div class="row">
+      <div class="column">
+        <div>
+          <a href="all_collection?New">
+           <img src="https://i.pinimg.com/originals/cf/e2/3e/cfe23e4f342df7fc5ba71d1e2adc1efd.jpg" alt="Nature" style="width:100%" align="center">
+           
+           <h2>New Arrival</h2>
+           </a>
+        </div>
+       
+       <div>
+         <a href="all_collection?Kids">
+           <img src="https://www.karl.com/cloud/karlwp/uploads/2021/01/PLPBANNER_SS21_MOBILE_KDS.jpg" alt="Nature" style="width:100%" align="center">
+           <h2>Kid</h2>
+           </a>
+        </div>
+      </div>
+     <div class="column">
+        <div>
+          <a href="all_collection?Women">
+           <img src="https://www.belstaff.eu/on/demandware.static/-/Library-Sites-bff-shared-general/default/dw595a77f7/images/2016/womens-clp/DESK-CLP-HERO_WW-JULY.jpg" alt="Nature" style="width:100%" align="center">
+           <h2>Women</h2>
+           </a>
+        </div>
+       
+       <div>
+         <a href="all_collection?Men">
+           <img src="https://timwellstyled.files.wordpress.com/2014/06/gerard-pique-mango-2-735x1024.jpg" alt="Nature" style="width:100%" align="center">
+           <h2>Men</h2>
+           </a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <h1>Newsletter</h1>
+      <p id="notice"><%= notice %></p>
+      <%= form_with model: @subscriber, url: newsletter_signup_path  do |form| %>
+      <div class = "mb-3">
+      <%= form.label :email %>        
+      <%= form.text_field :email, { :name => 'subscriber[email]' }%>
+      </div>
+      <div class = "mb-3">
+        <%= form.submit 'Subscribe!' %>
+      </div>
+    <% end %>  
+    
+</body>

@@ -1,0 +1,23 @@
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+
+</head>
+    <body>
+        <div style="text-align:center;color:red;" ><%=@notification%></div>
+        <h2 style="text-align:center;line-height:300%;"> Account Details</h2>
+        <div class="container" >
+                  <%= form_tag action: 'update_details' do %> 
+                  <div style="text-align:center" class="form-group">Old Password: <input  style="text-align:center" class="form-control" type="text" name="oldpassword" required></div>
+                  <div style="text-align:center" class="form-group">Password: <input  style="text-align:center" class="form-control" type="password" name="password" placeholder="Enter at least 8 characters" pattern="[A-Za-z0-9]{8,20}"required></div>
+                  <div style="text-align:center" class="form-group">Confirm Password: <input  style="text-align:center" class="form-control" type="password"  name="repassword" placeholder="Enter at least 8 characters" pattern="[A-Za-z0-9]{8,20}"required></div>
+                  <div style="text-align:center" class="form-group">Email:  <input  style="text-align:center" class="form-control" type="email" name="email" placeholder="example@gmail.com" pattern="{1,30}"required></div>
+                  <div style="text-align:center"><input type="submit" value="Update User" name="update"></div>
+                  <% end %>
+    </div>
+    
+    </body>
+</html>

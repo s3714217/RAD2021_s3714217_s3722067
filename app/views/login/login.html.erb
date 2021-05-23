@@ -1,0 +1,43 @@
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+
+</head>
+    <body>
+        <div style="text-align:center ;color: red" ><%=@notification%></div>
+        <h1 style="text-align:center; line-height:300%" > Log In</h1>
+
+        <% if(notice) %>
+            <h1 style="text-align:center; line-height:300%" > To add item to the bag you must log in</h1>    
+        <% end %>
+        
+        <div class="container" >
+            <%= form_tag action: 'login' do %> 
+                <form method="post" >
+                <% if(notice) %>
+                <div style="text-align:center" class="form-group">          <input  type="hidden" name="itemId" value= '<%= notice.to_json %>'></div>
+                <% end %>
+                <div style="text-align:center" class="form-group">Username: <input  type="text" name="username" placeholder="Enter username" pattern="[A-Za-z0-9]{1,20}"required></div>
+                <div style="text-align:center" class="form-group">Password: <input  type="password" name="password" placeholder="Enter password" pattern="[A-Za-z0-9]{1,20}"required></div>
+                <div style="text-align:center"><input type="submit" value="Login" name="login">
+                <a class="form-group" href='/login/sign_up' >New to us? Sign up</a>
+                </div>
+                </form>
+            <% end %>
+            
+            <div class="wrapper" >
+               <%= button_to "Sign in with Twitter", "https://#{request.env['HTTP_HOST']}" +"/auth/twitter", method: :post, class: "btn btn-primary"%>
+            </div>
+            
+            <div class="wrapper" >
+            <a class="form-group" href='/login/forgot_pwd' >Forgot Password</a>
+            </div>
+            
+            
+            
+        
+    </div>
+    </body>

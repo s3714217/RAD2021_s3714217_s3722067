@@ -1,0 +1,51 @@
+<h1>Checkout</h1>
+
+  <% cart_redirect() %>
+  <% @id = session[:current_user_id] %>
+  <% @cart = Cart.where(:user_id => @id) %>
+  
+ <h1>Number of Items:   <%= @cart.size %> </h1>
+ <tbody>
+   
+    <% @cart.each do |cartitem| %>
+      <% @item = Item.find_by id: cartitem.item_id %>
+       <div class=button-container>
+       	    <%= form_with url: to_productdetails_path() do |form| %>
+            <%= form.hidden_field :itemId, value:  @item.id %>
+            <%= image_submit_tag( @item.asseturl, width: 300, height: 400, display: "block") %>
+            <% end %> 
+
+            <% if is_in_saved_list( @item.id) %>
+            <div class='saved'> SAVED </div>
+            <% end %>
+      
+            <%= form_with url: toggle_saved_path() do |form| %>
+            <%= form.hidden_field :itemId, value:  @item.id %>
+            <%= form.submit '&#9829'.html_safe, method: :post, :class => "button-favourite" %>
+            <% end %> 
+      </div>
+      <br>
+      <h3><%= @item.name %></h3>
+      <h3>Price:</h3><td><%= @item.price %></td>
+      <h3>Size:</h3><td><%= cartitem.size %></td>
+      <h3>Colour:</h3><td><%= cartitem.colour %></td>    
+      <h3>Quantity:</h3><td><%= cartitem.quantity %></td>
+      <br>
+        <%= form_with url: remove_item_path() do |form| %>
+          <div class = "mb-3">
+            <%= form.hidden_field :userId, value: @id %>
+            <%= form.hidden_field :itemId, value: cartitem.item_id %>
+            <%= form.hidden_field :cartitemId, value: cartitem.id %>
+            <%= form.submit 'Remove', method: :post %>
+          </div>
+        <% end %>  
+    <% end %>
+ </tbody>
+  <h3>Total: $<%=total_cost(@id) %></h3> 
+  <%= form_with url: remove_items_path() do |form| %>
+  <%= form.hidden_field :userId, value: @id %>
+  <div class = "mb-3">
+    <%= form.submit 'Checkout', method: :post %>
+  </div>
+  <% end %>  
+    

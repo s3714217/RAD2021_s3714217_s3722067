@@ -1,24 +1,9 @@
-# README
+1. Development Team
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  - Thien Nguyen (s3714217) 
+  - Danny Le (s3722067)
+  
+2. Distribution is 50:50
+3. Highest level attempted is 80+ (1 90+ task)
+4. Heroku URL: 
+5. RAD2021_s3714217_s3722067 / https://github.com/s3714217/RAD2021_s3714217_s3722067
