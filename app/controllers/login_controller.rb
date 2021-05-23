@@ -148,7 +148,6 @@ class LoginController < ApplicationController
   end
   
   def send_access_token(token_url, email, token, pwd)
-    puts token_url
     user = User.find_by_email(email)
     t = AccessToken.new(email: email,user_id: user.id ,token: token )
     t.save
@@ -161,7 +160,6 @@ class LoginController < ApplicationController
       if AccessToken.find_by_token(token) != nil
         session[:current_user_id] = AccessToken.find_by_token(token).user_id
         AccessToken.find_by_token(token).destroy
-        puts AccessToken.all.length
         redirect_to main_main_path
       else
         @notification = "Your access URL has expired"
