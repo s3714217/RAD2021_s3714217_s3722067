@@ -1,0 +1,30 @@
+<% if is_logged_in() %>
+
+<h1>Profile</h1>
+<h1>
+ <% @current_user = User.find_by_id(session[:current_user_id]) %>
+ <%= gravatar_for @current_user %>
+ <%= @current_user.name %>
+</h1>
+    </br>
+    <%= button_to "&#128337 Pending Orders".html_safe, main_checkout_path, method: :get,  class: "btn btn-primary btn-lg btn-block" %>
+    
+     <% if session[:twitter_logged_in] == 0%>
+        </br> 
+            <%= button_to '&#9919 Update login details'.html_safe, login_update_details_path, method: :get,  class: "btn btn-primary btn-lg btn-block" %>
+        </br> 
+     <% end %>
+         
+    
+    <p id="notice"><%= notice %></p>
+    <%= form_with url: toggle_subscriber_path() do |form| %>
+      <%= form.hidden_field :email, name: 'subscriber[email]' , value: @current_user.email %>
+      <%= form.submit '&#x2709 Toggle Subscriptions'.html_safe, method: :post, class: "btn btn-primary btn-lg btn-block" %>
+    <% end %>
+    </br>
+    
+    <%= button_to "Logout".html_safe, login_logout_path, method: :get,  class: "btn btn-primary btn-lg btn-block" %>
+    </br>
+    
+<% else to_main() %>
+<% end %>

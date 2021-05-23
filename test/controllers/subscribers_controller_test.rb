@@ -1,0 +1,56 @@
+
+require 'test_helper'
+
+class SubscribersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @subscriber = subscribers(:two)
+  end
+
+  test "should get index" do
+    get subscribers_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_subscriber_url
+    assert_response :success
+  end
+
+  test "should create subscriber" do
+    assert_difference('Subscriber.count') do
+      post subscribers_url, params: { subscriber: { email: "email@something.com" } }
+    end
+  end
+
+  test "should show subscriber" do
+    get subscriber_url(@subscriber)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_subscriber_url(@subscriber)
+    assert_response :success
+  end
+
+  test "should update subscriber" do
+    patch subscriber_url(@subscriber), params: { subscriber: { email: @subscriber.email } }
+    assert_redirected_to subscriber_url(@subscriber)
+  end
+
+  test "should destroy subscriber" do
+    assert_difference('Subscriber.count', -1) do
+      delete subscriber_url(@subscriber)
+    end
+    assert_redirected_to main_profile_url
+  end
+  
+  test "should toggle_subscriber" do
+    post login_login_path, params: {username: "user3", password: "password"}
+    subscriber = Subscriber.where(email: "user3@gmail.com")
+    assert subscriber.empty?
+    post add_rating_path
+    subscriber = Subscriber.where(email: "user3@gmail.com")
+    assert subscriber
+  end
+  
+end

@@ -1,0 +1,83 @@
+<% if is_logged_in() && is_admin() %>
+
+<h1>Admin Page</h1>
+
+
+<!--A simple portal, of which the address is <your app’s url>/admin. It allows admin-->
+
+<% @users = User.all %>
+<% @purchases = Purchase.all %>
+<% @subs = Subscriber.all %>
+
+<div class="container">
+<h2>Summary of saved items</h2>
+<% @users.each do |user| %>
+  <%itemsList = user.items%>
+    <div class="container">
+    <h3>Username : <%= user.name %></h2>
+    <ol>
+    <%itemsList.each do |item| %>
+      <li><%= item.name %></li>
+    <%  end %>
+    </ol>
+    </div>
+<%  end %>
+</div>
+
+<div class="container">
+<h2>Purchased items</h2>
+<ol>
+<% @purchases.each do |purchase| %>
+    <% user = User.find_by id: purchase.user_id %>
+    <% item = Item.find_by id: purchase.item_id %>
+    <div class="container">
+    <li>User: <%= user.name %>  <br/> Item: <%= item.name %> <br/> Colour: <%=purchase.colour %> <br/> Size: <%=purchase.size %> <br/> Quantity: <%=purchase.quantity %></li>
+    </div>
+<% end %>
+</ol>
+</div>
+
+<div class="container">
+<h2>Overall ratings</h2>
+<%
+  ratingTotal = 0
+  totalUsersWithRating = 0
+  @users.each do |user| 
+    rating = user.rating
+    if rating
+      case rating.ratingscore
+      when 'So Bad'
+        ratingTotal += 1
+      when 'Okay'
+        ratingTotal += 2
+      when 'Good'
+        ratingTotal += 3
+      when 'Amazing'
+        ratingTotal += 4
+      else
+        totalUsersWithRating -= 1
+      end
+      totalUsersWithRating += 1
+    end
+  end
+%>
+
+<% if totalUsersWithRating == 0 %>
+    <h3>App has no ratings</h3>
+<% else %>
+    <% average = (ratingTotal/totalUsersWithRating.to_f) %>
+    <h3>Average score out of 4 is <%= average %> from <%=totalUsersWithRating%> Users </h3>
+<% end %>
+</div>
+
+<div class="container">
+<h2>Newsletter subscriptions</h2>
+<ol>
+<% @subs.each do |subscriptions| %>
+    <li><%= subscriptions.email %></li></br>
+<% end %>
+</ol>
+
+<% else to_main() %>
+<% end %>
+</div>
