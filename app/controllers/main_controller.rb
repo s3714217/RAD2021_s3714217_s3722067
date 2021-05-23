@@ -145,8 +145,13 @@ class MainController < ApplicationController
   def all_collection
     
    setup_category()
+  if request.url.split("?").length > 1
+    cate = request.url.split("?").last
+    params[:selected_cate] = cate
+    puts cate
+  end
    process_selected_category(params[:selected_cate])
-   if params[:search_text] != nil
+    if params[:search_text] != nil
       @displaying_items = search(params[:search_text])
       return
     end

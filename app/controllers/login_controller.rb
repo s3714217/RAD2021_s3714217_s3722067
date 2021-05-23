@@ -128,8 +128,10 @@ class LoginController < ApplicationController
         @notification = "A recover url has been sent to your email"
         token = generate_access_token()
         token_url = "https://#{request.env['HTTP_HOST']}" + login_login_path+ ".token:" + token
-        send_access_token(token_url, @user.first.email, token)
-        
+        temp_password = generate_temporary_pwd()
+        send_access_token(token_url, @user.first.email, token, temp_password)
+        User.update(@user.first.id, email: @user.first.email, password: temp_password, password_confirmation: temp_password)
+        puts temp_password
       else
         @notification = "Email has not been registered"
       end
@@ -141,12 +143,16 @@ class LoginController < ApplicationController
      return random_number = SecureRandom.hex(20)
   end 
   
-  def send_access_token(token_url, email, token)
+  def generate_temporary_pwd()
+    return random_number = SecureRandom.hex(5)
+  end
+  
+  def send_access_token(token_url, email, token, pwd)
     puts token_url
     user = User.find_by_email(email)
     t = AccessToken.new(email: email,user_id: user.id ,token: token )
     t.save
-    UserNewsletterMailer.send_recover_email(token_url, email).deliver_now
+    UserNewsletterMailer.send_recover_email(token_url, email, pwd).deliver_now
   end
 
   
