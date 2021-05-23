@@ -6,7 +6,10 @@ one:
   category: "Men"
   price: 15
   itemdescription: "Smart Casual"
-  asseturl: "asseturl"
+  asseturl: "https://img.macson.es/fotos/631461_1_l.jpg"
+  size: "Small"
+  tag: "Dress"
+  colour: "Black"
   popularity: 0
 
 two:
@@ -15,5 +18,8 @@ two:
   category: "New"
   price: 1.5
   itemdescription: "New and Hip"
-  asseturl: "asseturl"
+  asseturl: "https://img.macson.es/fotos/631461_1_l.jpg"
+  size: "Large"
+  tag: "Shirt"
+  colour: "Black"
   popularity: 0
