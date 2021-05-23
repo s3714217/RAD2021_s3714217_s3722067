@@ -139,7 +139,9 @@
     <%= text_field_tag'search_text', params['search_text'] %>
     <%= submit_tag("Search", :class => 'btn btn-light' )%> 
     <% end %>
+    
 
+<div class="wrapper"><a><%= @displaying_items.count%> Items</a></div>
 <p><h1 class="collection_title" style="text-align:center">All Collection</h1></p>
 
 <div class="row">
@@ -164,6 +166,7 @@
                         </div>  
         
                    <h4 class="card-title"><%= item.name%></h4>
+                   <h3 class="card-title">$<%= item.price%></h3>
                    <%= form_tag action: 'all_collection' do %> 
                    <%= hidden_field_tag'selected_item',item.id%>
                    <% end %> 
