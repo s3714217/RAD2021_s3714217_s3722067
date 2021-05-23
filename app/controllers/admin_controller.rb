@@ -1,7 +1,8 @@
 class AdminController < ApplicationController
   def admin
   end
-  
+ 
+  # Check if a user is logged in 
   def is_logged_in
     ifloggedin = false
     if(session[:current_user_id])
@@ -10,6 +11,7 @@ class AdminController < ApplicationController
   end
   helper_method :is_logged_in
   
+  # Check if the user logged in is the admin
   def is_admin
     isAdmin = false
     if(session[:current_user_id] && User.find_by_id(session[:current_user_id]).name == "admin")

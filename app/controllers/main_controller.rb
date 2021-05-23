@@ -33,6 +33,7 @@ class MainController < ApplicationController
     redirect_to '/main/productdetails', notice: params[:itemId]
   end
 
+  #Toggle an item's saved status
   def toggle_saved
     if is_in_saved_list(params[:itemId])
       removed_saved_param(params[:itemId])
@@ -41,6 +42,7 @@ class MainController < ApplicationController
     end
   end
   
+  #Check if items is in the user's saved list
   def is_in_saved_list(itemId)
     ifloggedin = false
     if(session[:current_user_id])
@@ -64,6 +66,7 @@ class MainController < ApplicationController
     removed_saved_param(params[:itemId])
   end
   
+  #Remove saved item from user's list  
   def removed_saved_param(itemId)
     ifloggedin = false
     if(session[:current_user_id])
@@ -138,6 +141,7 @@ class MainController < ApplicationController
     end
   end
   
+  #Redirect to cart page  
   def cart_redirect()
     if(!session[:current_user_id])
       redirect_to login_login_path
@@ -160,6 +164,7 @@ class MainController < ApplicationController
     
   end
   
+  #Get all size options  
   def getSizeOptionArray(item)
     sizeOptionArray = Array.new(item.size.split(",").size) { Array.new(2) }
     item.size.split(",").each_with_index do |size, index|
@@ -168,6 +173,7 @@ class MainController < ApplicationController
   end
   helper_method :getSizeOptionArray
     
+  #Get all colour options      
   def getColourOptionArray(item)
     colourOptionArray = Array.new(item.colour.split(",").size) { Array.new(2) }
     item.colour.split(",").each_with_index do |colour, index|
@@ -336,13 +342,5 @@ class MainController < ApplicationController
     end
     return display_items
   end
-  
-  def is_logged_in
-    ifloggedin = false
-    if(session[:current_user_id])
-      ifloggedin = true
-    end
-  end
-  helper_method :is_logged_in
     
 end
