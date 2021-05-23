@@ -31,7 +31,7 @@
                    <li class="nav-item"><a class="nav-link" href=<%= main_profile_path %>>Profile</a></li>
                 <% end %>
                 <% if User.find_by_id(session[:current_user_id]) && User.find_by_id(session[:current_user_id]).name == "admin" %>
-                   <li class="nav-item"><a class="nav-link" href=<%= admin_admin_path %>>Admin</a></li>
+                   <li class="nav-item"><a class="nav-link" href=<%= "/admin" %>>Admin</a></li>
                 <% end %>
     </ul>
   </div>  
