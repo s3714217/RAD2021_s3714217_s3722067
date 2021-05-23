@@ -8,6 +8,6 @@ class ItemTest < ActiveSupport::TestCase
     assert @item.category == "Men"
     assert @item.price == 15
     assert @item.itemdescription == "Smart Casual"
-    assert @item.asseturl == "asseturl"
+    assert @item.asseturl == "https://img.macson.es/fotos/631461_1_l.jpg"
   end
 end
